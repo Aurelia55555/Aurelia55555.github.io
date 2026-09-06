@@ -1,0 +1,2594 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>StudyHub</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f3ff;
+    color: #202024;
+}
+
+nav {
+    background: white;
+    padding: 12px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+nav button {
+    border: none;
+    background: transparent;
+    color: #555;
+    padding: 10px 13px;
+    margin: 3px;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background: #eeeaff;
+}
+
+.page {
+    display: none;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.active {
+    display: block;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+}
+
+.hero {
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 46px;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    color: #777;
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+button {
+    border: none;
+    padding: 12px 17px;
+    margin: 5px;
+    border-radius: 12px;
+    background: #6c63ff;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.88;
+}
+
+input,
+select {
+    padding: 13px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 11px;
+    font-size: 15px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.stat {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.stat-icon {
+    font-size: 30px;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.tool {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    cursor: pointer;
+}
+
+.tool-icon {
+    font-size: 42px;
+}
+
+.tool p {
+    color: #777;
+    font-size: 14px;
+}
+
+.progress {
+    height: 16px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.progressBar {
+    height: 100%;
+    width: 0%;
+    background: #6c63ff;
+    transition: 0.4s;
+}
+
+.task {
+    background: #f8f7ff;
+    padding: 16px;
+    margin-top: 10px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.done {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.delete {
+    background: #ff6b6b;
+}
+
+.average {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#timer {
+    font-size: 80px;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+#phase {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.smart-task {
+    background: white;
+    padding: 17px;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.priority-hoch {
+    border-left: 5px solid #ff6b6b;
+}
+
+.priority-mittel {
+    border-left: 5px solid #ffb84d;
+}
+
+.priority-niedrig {
+    border-left: 5px solid #6c63ff;
+}
+
+.subject {
+    background: #f8f7ff;
+    padding: 18px;
+    border-radius: 17px;
+    margin-top: 12px;
+}
+
+.subject-title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+    margin-top: 20px;
+}
+
+.day {
+    min-height: 85px;
+    background: #f8f7ff;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.day-name {
+    font-weight: bold;
+    text-align: center;
+    color: #666;
+}
+
+.today {
+    border: 2px solid #6c63ff;
+}
+
+.day-task {
+    font-size: 11px;
+    background: #e9e6ff;
+    border-radius: 7px;
+    padding: 4px;
+    margin-top: 5px;
+}
+
+.stat-box {
+    background: #f8f7ff;
+    padding: 20px;
+    border-radius: 18px;
+    margin-top: 10px;
+}
+
+.big-stat {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.small {
+    color: #777;
+    font-size: 14px;
+}
+
+.success {
+    background: #5cb85c;
+}
+
+@media (max-width: 750px) {
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .day {
+        min-height: 65px;
+        font-size: 11px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    #timer {
+        font-size: 65px;
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<button onclick="seite('home')">🏠 Home</button>
+
+<button onclick="seite('noten')">📊 Noten</button>
+
+<button onclick="seite('timerPage')">🍅 Timer</button>
+
+<button onclick="seite('planer')">📅 Planer</button>
+
+<button onclick="seite('smart')">🧠 Smart</button>
+
+<button onclick="seite('kalender')">🗓️ Kalender</button>
+
+<button onclick="seite('statistik')">📈 Statistik</button>
+
+<button onclick="seite('einstellungen')">⚙️</button>
+
+</nav>
+
+
+
+<!-- HOME -->
+
+<div id="home" class="page active">
+
+
+<div class="card hero">
+
+<h1 id="willkommen">
+📚 StudyHub
+</h1>
+
+<p id="begrüßung">
+Dein smarter Lernbereich.
+</p>
+
+</div>
+
+
+<div class="dashboard">
+
+
+<div class="stat">
+
+<div class="stat-icon">📚</div>
+
+<div
+class="stat-number"
+id="aufgabenAnzahl">
+0
+</div>
+
+<div>Aufgaben</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">✅</div>
+
+<div
+class="stat-number"
+id="erledigteAnzahl">
+0
+</div>
+
+<div>Erledigt</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">📊</div>
+
+<div
+class="stat-number"
+id="homeDurchschnitt">
+-
+</div>
+
+<div>Notenschnitt</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">🔥</div>
+
+<div
+class="stat-number"
+id="streak">
+0
+</div>
+
+<div>Tage Serie</div>
+
+</div>
+
+</div>
+
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h2>🎯 Fortschritt</h2>
+
+<p id="fortschrittText">
+0% erledigt
+</p>
+
+<div class="progress">
+
+<div
+class="progressBar"
+id="progressBar">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>⏱️ Tagesziel</h2>
+
+<div
+class="big-stat"
+id="tageszielAnzeige">
+0 / 60 min
+</div>
+
+<p class="small">
+Deine gespeicherte Lernzeit heute.
+</p>
+
+<div class="progress">
+
+<div
+class="progressBar"
+id="lernzielBar">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📅 Heute</h2>
+
+<div id="heutigeAufgaben">
+
+<p>Heute keine Aufgaben geplant.</p>
+
+</div>
+
+</div>
+
+
+
+<div class="tool-grid">
+
+
+<div
+class="tool"
+onclick="seite('smart')">
+
+<div class="tool-icon">🧠</div>
+
+<h3>Smart-Lernplan</h3>
+
+<p>StudyHub plant für dich.</p>
+
+</div>
+
+
+<div
+class="tool"
+onclick="seite('kalender')">
+
+<div class="tool-icon">🗓️</div>
+
+<h3>Kalender</h3>
+
+<p>Alle Aufgaben im Überblick.</p>
+
+</div>
+
+
+<div
+class="tool"
+onclick="seite('statistik')">
+
+<div class="tool-icon">📈</div>
+
+<h3>Statistik</h3>
+
+<p>Deinen Lernfortschritt ansehen.</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- NOTEN -->
+
+<div id="noten" class="page">
+
+<div class="card">
+
+<h1>📊 Notenrechner</h1>
+
+<p>
+Berechne deinen gewichteten Notendurchschnitt.
+</p>
+
+
+<input
+id="notenName"
+placeholder="z.B. Klausur">
+
+
+<input
+type="number"
+id="notenWert"
+placeholder="Note"
+min="1"
+max="6"
+step="0.1">
+
+
+<input
+type="number"
+id="gewicht"
+placeholder="Gewichtung %"
+min="1"
+max="100">
+
+
+<br>
+
+
+<button onclick="noteHinzufuegen()">
+➕ Note hinzufügen
+</button>
+
+
+<div id="notenListe"></div>
+
+
+<div
+class="average"
+id="durchschnitt">
+Durchschnitt: -
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- TIMER -->
+
+<div id="timerPage" class="page">
+
+<div class="card hero">
+
+<h1>🍅 Pomodoro</h1>
+
+<p id="phase">
+📚 LERNZEIT
+</p>
+
+<div id="timer">
+25:00
+</div>
+
+<button onclick="startTimer()">
+▶️ Start
+</button>
+
+<button onclick="pauseTimer()">
+⏸️ Pause
+</button>
+
+<button onclick="resetTimer()">
+🔄 Reset
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- PLANER -->
+
+<div id="planer" class="page">
+
+<div class="card">
+
+<h1>📅 Lernplaner</h1>
+
+<p>
+Plane deine Aufgaben.
+</p>
+
+
+<input
+type="text"
+id="aufgabe"
+placeholder="z.B. Mathe lernen">
+
+
+<input
+type="date"
+id="datum">
+
+
+<br>
+
+
+<button onclick="aufgabeHinzufuegen()">
+➕ Aufgabe hinzufügen
+</button>
+
+
+<div id="aufgabenListe"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- SMART -->
+
+<div id="smart" class="page">
+
+<div class="card">
+
+<h1>🧠 Smart-Lernplaner</h1>
+
+<p>
+Gib StudyHub deine Lernziele und er erstellt eine Reihenfolge.
+</p>
+
+
+<div class="stat-box">
+
+
+<input
+type="text"
+id="smartFach"
+placeholder="Fach, z.B. Mathe">
+
+
+<input
+type="text"
+id="smartThema"
+placeholder="Thema">
+
+
+<input
+type="number"
+id="smartMinuten"
+placeholder="Minuten"
+min="10">
+
+
+<select id="smartPrioritaet">
+
+<option value="hoch">
+🔴 Hoch
+</option>
+
+<option value="mittel">
+🟠 Mittel
+</option>
+
+<option value="niedrig">
+🟣 Niedrig
+</option>
+
+</select>
+
+
+<input
+type="date"
+id="smartPruefung">
+
+
+<br>
+
+
+<button onclick="smartAufgabeHinzufuegen()">
+➕ Lernziel hinzufügen
+</button>
+
+
+</div>
+
+
+<div id="smartListe"></div>
+
+
+<div class="stat-box">
+
+<h2>🤖 Automatischer Lernplan</h2>
+
+<button onclick="planErstellen()">
+✨ Plan erstellen
+</button>
+
+<div id="automatischerPlan"></div>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📚 Fächer</h2>
+
+<div id="fachStatistik">
+
+<p>Noch keine Fächer.</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- KALENDER -->
+
+<div id="kalender" class="page">
+
+<div class="card">
+
+<h1>🗓️ Kalender</h1>
+
+<p>
+Hier siehst du deine geplanten Aufgaben.
+</p>
+
+
+<div>
+
+<button onclick="monatAendern(-1)">
+⬅️
+</button>
+
+<strong id="monatTitel"></strong>
+
+<button onclick="monatAendern(1)">
+➡️
+</button>
+
+</div>
+
+
+<div class="calendar" id="kalenderAnzeige"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- STATISTIK -->
+
+<div id="statistik" class="page">
+
+<div class="card">
+
+<h1>📈 Lernstatistik</h1>
+
+<p>
+Behalte deinen Fortschritt im Blick.
+</p>
+
+
+<div class="grid">
+
+
+<div class="stat-box">
+
+<div class="small">
+Aufgaben insgesamt
+</div>
+
+<div
+class="big-stat"
+id="statAufgaben">
+0
+</div>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="small">
+Aufgaben erledigt
+</div>
+
+<div
+class="big-stat"
+id="statErledigt">
+0
+</div>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="small">
+Gespeicherte Lernzeit
+</div>
+
+<div
+class="big-stat"
+id="statLernzeit">
+0 min
+</div>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="small">
+Aktueller Notenschnitt
+</div>
+
+<div
+class="big-stat"
+id="statNote">
+-
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stat-box">
+
+<h2>🎯 Aufgabenfortschritt</h2>
+
+<div class="progress">
+
+<div
+class="progressBar"
+id="statProgress">
+</div>
+
+</div>
+
+<p id="statProgressText">
+0%
+</p>
+
+</div>
+
+
+<div class="stat-box">
+
+<h2>📚 Fächer</h2>
+
+<div id="statFaecher"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- EINSTELLUNGEN -->
+
+<div id="einstellungen" class="page">
+
+<div class="card">
+
+<h1>⚙️ Einstellungen</h1>
+
+<p>
+Passe StudyHub an dich an.
+</p>
+
+
+<h2>👋 Dein Name</h2>
+
+<input
+id="nameInput"
+placeholder="Dein Name">
+
+
+<br>
+
+
+<h2>🎯 Tägliches Lernziel</h2>
+
+<input
+type="number"
+id="lernzielInput"
+placeholder="Minuten"
+min="10">
+
+
+<br>
+
+
+<button onclick="einstellungenSpeichern()">
+💾 Speichern
+</button>
+
+
+<button onclick="datenLoeschen()"
+class="delete">
+
+🗑️ Alle Daten löschen
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+/* SEITEN */
+
+function seite(name) {
+
+document
+.querySelectorAll(".page")
+.forEach(function(page) {
+
+page.classList.remove("active");
+
+});
+
+document
+.getElementById(name)
+.classList.add("active");
+
+
+if (name === "kalender") {
+
+kalenderAnzeigen();
+
+}
+
+
+if (name === "statistik") {
+
+statistikAnzeigen();
+
+}
+
+}
+
+
+
+/* DATEN */
+
+let noten =
+JSON.parse(
+localStorage.getItem("studyhubNoten")
+) || [];
+
+
+let aufgaben =
+JSON.parse(
+localStorage.getItem("studyhubAufgaben")
+) || [];
+
+
+let smartAufgaben =
+JSON.parse(
+localStorage.getItem("studyhubSmart")
+) || [];
+
+
+let lernzeit =
+Number(
+localStorage.getItem("studyhubLernzeit")
+) || 0;
+
+
+let name =
+localStorage.getItem("studyhubName")
+|| "";
+
+
+let lernziel =
+Number(
+localStorage.getItem("studyhubLernziel")
+) || 60;
+
+
+
+/* NOTEN */
+
+function speichernNoten() {
+
+localStorage.setItem(
+"studyhubNoten",
+JSON.stringify(noten)
+);
+
+}
+
+
+function noteHinzufuegen() {
+
+let name =
+document
+.getElementById("notenName")
+.value;
+
+let note =
+Number(
+document
+.getElementById("notenWert")
+.value
+);
+
+let gewicht =
+Number(
+document
+.getElementById("gewicht")
+.value
+);
+
+
+if (!name || !note || !gewicht) {
+
+alert("Bitte alle Felder ausfüllen.");
+
+return;
+
+}
+
+
+noten.push({
+
+name: name,
+note: note,
+gewicht: gewicht
+
+});
+
+
+speichernNoten();
+
+
+document.getElementById("notenName").value = "";
+
+document.getElementById("notenWert").value = "";
+
+document.getElementById("gewicht").value = "";
+
+
+notenAnzeigen();
+
+}
+
+
+function notenAnzeigen() {
+
+let liste =
+document
+.getElementById("notenListe");
+
+liste.innerHTML = "";
+
+
+let gesamt = 0;
+
+let gewichtGesamt = 0;
+
+
+noten.forEach(
+function(item, index) {
+
+gesamt +=
+item.note * item.gewicht;
+
+gewichtGesamt +=
+item.gewicht;
+
+
+liste.innerHTML += `
+
+<div class="task">
+
+<span>
+
+<strong>
+${item.name}
+</strong>
+
+<br>
+
+Note ${item.note}
+· ${item.gewicht}%
+
+</span>
+
+<button
+class="delete"
+onclick="noteLoeschen(${index})">
+
+🗑️
+
+</button>
+
+</div>
+
+`;
+
+});
+
+
+let durchschnitt = 0;
+
+
+if (gewichtGesamt > 0) {
+
+durchschnitt =
+gesamt / gewichtGesamt;
+
+}
+
+
+let wert =
+gewichtGesamt > 0
+? durchschnitt.toFixed(2)
+: "-";
+
+
+document
+.getElementById("durchschnitt")
+.innerHTML =
+"Durchschnitt: " + wert;
+
+
+document
+.getElementById("homeDurchschnitt")
+.innerHTML =
+wert;
+
+
+return durchschnitt;
+
+}
+
+
+function noteLoeschen(index) {
+
+noten.splice(index, 1);
+
+speichernNoten();
+
+notenAnzeigen();
+
+}
+
+
+
+/* TIMER */
+
+let minuten = 25;
+
+let sekunden = 0;
+
+let timer = null;
+
+let lernphase = true;
+
+
+function anzeigen() {
+
+document
+.getElementById("timer")
+.innerHTML =
+
+String(minuten)
+.padStart(2,"0")
++
+":"
++
+String(sekunden)
+.padStart(2,"0");
+
+}
+
+
+function startTimer() {
+
+if (timer) return;
+
+
+timer =
+setInterval(function() {
+
+
+if (sekunden === 0) {
+
+
+if (minuten === 0) {
+
+
+clearInterval(timer);
+
+timer = null;
+
+
+if (lernphase) {
+
+lernzeit += 25;
+
+localStorage.setItem(
+"studyhubLernzeit",
+lernzeit
+);
+
+
+lernphase = false;
+
+minuten = 5;
+
+
+document
+.getElementById("phase")
+.innerHTML =
+"☕ PAUSE";
+
+
+alert(
+"📚 Lernzeit geschafft!"
+);
+
+}
+else {
+
+lernphase = true;
+
+minuten = 25;
+
+
+document
+.getElementById("phase")
+.innerHTML =
+"📚 LERNZEIT";
+
+
+alert(
+"☕ Pause vorbei!"
+);
+
+}
+
+
+dashboardAktualisieren();
+
+return;
+
+}
+
+
+minuten--;
+
+sekunden = 59;
+
+}
+else {
+
+sekunden--;
+
+}
+
+
+anzeigen();
+
+
+},1000);
+
+}
+
+
+function pauseTimer() {
+
+clearInterval(timer);
+
+timer = null;
+
+}
+
+
+function resetTimer() {
+
+clearInterval(timer);
+
+timer = null;
+
+minuten = 25;
+
+sekunden = 0;
+
+lernphase = true;
+
+
+document
+.getElementById("phase")
+.innerHTML =
+"📚 LERNZEIT";
+
+
+anzeigen();
+
+}
+
+
+
+/* AUFGABEN */
+
+function speichernAufgaben() {
+
+localStorage.setItem(
+"studyhubAufgaben",
+JSON.stringify(aufgaben)
+);
+
+}
+
+
+function aufgabeHinzufuegen() {
+
+let text =
+document
+.getElementById("aufgabe")
+.value;
+
+let datum =
+document
+.getElementById("datum")
+.value;
+
+
+if (!text) {
+
+alert("Bitte eine Aufgabe eingeben.");
+
+return;
+
+}
+
+
+aufgaben.push({
+
+text: text,
+datum: datum,
+erledigt: false
+
+});
+
+
+speichernAufgaben();
+
+
+document.getElementById("aufgabe").value = "";
+
+document.getElementById("datum").value = "";
+
+
+aufgabenAnzeigen();
+
+}
+
+
+function aufgabenAnzeigen() {
+
+let liste =
+document
+.getElementById("aufgabenListe");
+
+liste.innerHTML = "";
+
+
+aufgaben.forEach(
+function(item,index) {
+
+
+let div =
+document.createElement("div");
+
+
+div.className = "task";
+
+
+if (item.erledigt) {
+
+div.classList.add("done");
+
+}
+
+
+div.innerHTML = `
+
+<span>
+
+<strong>
+${item.text}
+</strong>
+
+<br>
+
+📅 ${item.datum || "Kein Datum"}
+
+</span>
+
+
+<div>
+
+<button onclick="erledigt(${index})">
+☑️
+</button>
+
+<button
+class="delete"
+onclick="loeschen(${index})">
+🗑️
+</button>
+
+</div>
+
+`;
+
+
+liste.appendChild(div);
+
+});
+
+
+dashboardAktualisieren();
+
+heutigeAufgabenAnzeigen();
+
+}
+
+
+function erledigt(index) {
+
+aufgaben[index].erledigt =
+!aufgaben[index].erledigt;
+
+
+speichernAufgaben();
+
+aufgabenAnzeigen();
+
+streakBerechnen();
+
+}
+
+
+function loeschen(index) {
+
+aufgaben.splice(index,1);
+
+speichernAufgaben();
+
+aufgabenAnzeigen();
+
+}
+
+
+
+/* DASHBOARD */
+
+function dashboardAktualisieren() {
+
+let gesamt =
+aufgaben.length;
+
+
+let erledigt =
+aufgaben.filter(
+function(item) {
+
+return item.erledigt;
+
+}).length;
+
+
+let prozent =
+gesamt > 0
+?
+Math.round(
+erledigt / gesamt * 100
+)
+:
+0;
+
+
+document
+.getElementById("aufgabenAnzahl")
+.innerHTML =
+gesamt;
+
+
+document
+.getElementById("erledigteAnzahl")
+.innerHTML =
+erledigt;
+
+
+document
+.getElementById("fortschrittText")
+.innerHTML =
+prozent + "% erledigt";
+
+
+document
+.getElementById("progressBar")
+.style.width =
+prozent + "%";
+
+
+let ziel =
+Math.round(
+lernzeit / lernziel * 100
+);
+
+
+if (ziel > 100) ziel = 100;
+
+
+document
+.getElementById("tageszielAnzeige")
+.innerHTML =
+lernzeit +
+" / " +
+lernziel +
+" min";
+
+
+document
+.getElementById("lernzielBar")
+.style.width =
+ziel + "%";
+
+
+statistikAnzeigen();
+
+}
+
+
+
+/* HEUTE */
+
+function heutigeAufgabenAnzeigen() {
+
+let heute =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+let liste =
+aufgaben.filter(
+function(item) {
+
+return item.datum === heute;
+
+});
+
+
+let bereich =
+document
+.getElementById("heutigeAufgaben");
+
+
+if (liste.length === 0) {
+
+bereich.innerHTML =
+"<p>🎉 Heute keine Aufgaben geplant.</p>";
+
+return;
+
+}
+
+
+bereich.innerHTML = "";
+
+
+liste.forEach(
+function(item) {
+
+let div =
+document.createElement("div");
+
+div.className =
+"task";
+
+
+div.innerHTML =
+
+(item.erledigt ? "✅ " : "📚 ")
++
+item.text;
+
+
+bereich.appendChild(div);
+
+});
+
+}
+
+
+
+/* SMART */
+
+function speichernSmart() {
+
+localStorage.setItem(
+"studyhubSmart",
+JSON.stringify(smartAufgaben)
+);
+
+}
+
+
+function smartAufgabeHinzufuegen() {
+
+let fach =
+document
+.getElementById("smartFach")
+.value;
+
+let thema =
+document
+.getElementById("smartThema")
+.value;
+
+let minuten =
+Number(
+document
+.getElementById("smartMinuten")
+.value
+);
+
+let prioritaet =
+document
+.getElementById("smartPrioritaet")
+.value;
+
+let pruefung =
+document
+.getElementById("smartPruefung")
+.value;
+
+
+if (!fach || !thema || !minuten) {
+
+alert(
+"Bitte Fach, Thema und Lernzeit eingeben."
+);
+
+return;
+
+}
+
+
+smartAufgaben.push({
+
+fach: fach,
+thema: thema,
+minuten: minuten,
+prioritaet: prioritaet,
+pruefung: pruefung
+
+});
+
+
+speichernSmart();
+
+
+document.getElementById("smartFach").value = "";
+
+document.getElementById("smartThema").value = "";
+
+document.getElementById("smartMinuten").value = "";
+
+document.getElementById("smartPruefung").value = "";
+
+
+smartAnzeigen();
+
+fachAnzeigen();
+
+}
+
+
+function smartAnzeigen() {
+
+let liste =
+document
+.getElementById("smartListe");
+
+liste.innerHTML = "";
+
+
+smartAufgaben.forEach(
+function(item,index) {
+
+
+liste.innerHTML += `
+
+<div
+class="smart-task priority-${item.prioritaet}">
+
+<strong>
+${item.fach}
+</strong>
+
+<br>
+
+📖 ${item.thema}
+
+<br>
+
+⏱️ ${item.minuten} Minuten
+
+<br>
+
+⭐ ${item.prioritaet}
+
+<br>
+
+📅 ${
+item.pruefung || "Kein Prüfungstermin"
+}
+
+<br>
+
+<button
+class="delete"
+onclick="smartLoeschen(${index})">
+
+🗑️ Löschen
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function smartLoeschen(index) {
+
+smartAufgaben.splice(index,1);
+
+speichernSmart();
+
+smartAnzeigen();
+
+fachAnzeigen();
+
+}
+
+
+function planErstellen() {
+
+let plan =
+document
+.getElementById("automatischerPlan");
+
+
+if (smartAufgaben.length === 0) {
+
+plan.innerHTML =
+"<p>Füge zuerst Lernziele hinzu.</p>";
+
+return;
+
+}
+
+
+let sortiert =
+[...smartAufgaben];
+
+
+let prioritaeten = {
+
+hoch: 1,
+mittel: 2,
+niedrig: 3
+
+};
+
+
+sortiert.sort(
+function(a,b) {
+
+
+let p =
+prioritaeten[a.prioritaet]
+-
+prioritaeten[b.prioritaet];
+
+
+if (p !== 0) return p;
+
+
+if (!a.pruefung) return 1;
+
+if (!b.pruefung) return -1;
+
+
+return new Date(a.pruefung)
+-
+new Date(b.pruefung);
+
+});
+
+
+plan.innerHTML =
+"<h3>✨ Empfohlene Reihenfolge</h3>";
+
+
+sortiert.forEach(
+function(item,index) {
+
+
+plan.innerHTML += `
+
+<div class="smart-task">
+
+<strong>
+${index + 1}. ${item.fach}
+</strong>
+
+<br>
+
+📖 ${item.thema}
+
+<br>
+
+⏱️ ${item.minuten} Minuten
+
+<br>
+
+⭐ Priorität:
+${item.prioritaet}
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+/* FÄCHER */
+
+function fachAnzeigen() {
+
+let bereich =
+document
+.getElementById("fachStatistik");
+
+
+let faecher = {};
+
+
+smartAufgaben.forEach(
+function(item) {
+
+
+if (!faecher[item.fach]) {
+
+faecher[item.fach] = {
+
+anzahl: 0,
+minuten: 0
+
+};
+
+}
+
+
+faecher[item.fach].anzahl++;
+
+faecher[item.fach].minuten +=
+item.minuten;
+
+});
+
+
+if (Object.keys(faecher).length === 0) {
+
+bereich.innerHTML =
+"<p>Noch keine Fächer.</p>";
+
+return;
+
+}
+
+
+bereich.innerHTML = "";
+
+
+Object.keys(faecher).forEach(
+function(fach) {
+
+
+bereich.innerHTML += `
+
+<div class="subject">
+
+<div class="subject-title">
+
+<span>
+📚 ${fach}
+</span>
+
+<span>
+${faecher[fach].anzahl}
+Ziele
+</span>
+
+</div>
+
+<p>
+⏱️ ${faecher[fach].minuten}
+Minuten geplant
+</p>
+
+<div class="progress">
+
+<div
+class="progressBar"
+style="width:100%">
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+/* KALENDER */
+
+let kalenderDatum = new Date();
+
+
+function monatAendern(wert) {
+
+kalenderDatum.setMonth(
+kalenderDatum.getMonth() + wert
+);
+
+kalenderAnzeigen();
+
+}
+
+
+function kalenderAnzeigen() {
+
+let jahr =
+kalenderDatum.getFullYear();
+
+let monat =
+kalenderDatum.getMonth();
+
+
+let namen = [
+
+"Januar",
+"Februar",
+"März",
+"April",
+"Mai",
+"Juni",
+"Juli",
+"August",
+"September",
+"Oktober",
+"November",
+"Dezember"
+
+];
+
+
+document
+.getElementById("monatTitel")
+.innerHTML =
+namen[monat] +
+" " +
+jahr;
+
+
+let bereich =
+document
+.getElementById("kalenderAnzeige");
+
+bereich.innerHTML = "";
+
+
+let tage =
+[
+"Mo",
+"Di",
+"Mi",
+"Do",
+"Fr",
+"Sa",
+"So"
+];
+
+
+tage.forEach(
+function(tag) {
+
+bereich.innerHTML +=
+`
+<div class="day-name">
+${tag}
+</div>
+`;
+
+});
+
+
+let erster =
+new Date(
+jahr,
+monat,
+1
+);
+
+
+let letzter =
+new Date(
+jahr,
+monat + 1,
+0
+);
+
+
+let start =
+(erster.getDay() + 6) % 7;
+
+
+for (
+let i = 0;
+i < start;
+i++
+) {
+
+bereich.innerHTML +=
+"<div></div>";
+
+}
+
+
+let heute =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+for (
+let tag = 1;
+tag <= letzter.getDate();
+tag++
+) {
+
+
+let datum =
+jahr +
+"-" +
+String(monat + 1)
+.padStart(2,"0") +
+"-" +
+String(tag)
+.padStart(2,"0");
+
+
+let div =
+document.createElement("div");
+
+
+div.className = "day";
+
+
+if (datum === heute) {
+
+div.classList.add("today");
+
+}
+
+
+div.innerHTML =
+"<strong>" +
+tag +
+"</strong>";
+
+
+let aufgabenTag =
+aufgaben.filter(
+function(item) {
+
+return item.datum === datum;
+
+});
+
+
+aufgabenTag.forEach(
+function(item) {
+
+
+let task =
+document.createElement("div");
+
+task.className =
+"day-task";
+
+
+task.innerHTML =
+(item.erledigt ? "✅ " : "📚 ")
++
+item.text;
+
+
+div.appendChild(task);
+
+});
+
+
+bereich.appendChild(div);
+
+}
+
+}
+
+
+
+/* STATISTIK */
+
+function statistikAnzeigen() {
+
+let gesamt =
+aufgaben.length;
+
+
+let erledigt =
+aufgaben.filter(
+function(item) {
+
+return item.erledigt;
+
+}).length;
+
+
+let prozent =
+gesamt
+?
+Math.round(
+erledigt / gesamt * 100
+)
+:
+0;
+
+
+document
+.getElementById("statAufgaben")
+.innerHTML =
+gesamt;
+
+
+document
+.getElementById("statErledigt")
+.innerHTML =
+erledigt;
+
+
+document
+.getElementById("statLernzeit")
+.innerHTML =
+lernzeit +
+" min";
+
+
+document
+.getElementById("statProgress")
+.style.width =
+prozent + "%";
+
+
+document
+.getElementById("statProgressText")
+.innerHTML =
+prozent + "%";
+
+
+let durchschnitt =
+notenAnzeigen();
+
+
+document
+.getElementById("statNote")
+.innerHTML =
+noten.length
+?
+durchschnitt.toFixed(2)
+:
+"-";
+
+
+let faecher = {};
+
+
+smartAufgaben.forEach(
+function(item) {
+
+faecher[item.fach] =
+(faecher[item.fach] || 0) + 1;
+
+});
+
+
+let bereich =
+document
+.getElementById("statFaecher");
+
+
+bereich.innerHTML = "";
+
+
+Object.keys(faecher).forEach(
+function(fach) {
+
+bereich.innerHTML +=
+`
+
+<div class="subject">
+
+<strong>
+📚 ${fach}
+</strong>
+
+<p>
+${faecher[fach]}
+Lernziel(e)
+</p>
+
+</div>
+
+`;
+
+});
+
+
+if (Object.keys(faecher).length === 0) {
+
+bereich.innerHTML =
+"<p>Noch keine Fächer.</p>";
+
+}
+
+}
+
+
+
+/* STREAK */
+
+function streakBerechnen() {
+
+let tage =
+JSON.parse(
+localStorage.getItem("studyhubTage")
+) || [];
+
+
+let heute =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+if (
+aufgaben.some(
+function(item) {
+
+return item.erledigt;
+
+})
+&&
+!tage.includes(heute)
+) {
+
+tage.push(heute);
+
+localStorage.setItem(
+"studyhubTage",
+JSON.stringify(tage)
+);
+
+}
+
+
+let datum =
+new Date();
+
+let streak = 0;
+
+
+while (true) {
+
+let tag =
+datum
+.toISOString()
+.split("T")[0];
+
+
+if (tage.includes(tag)) {
+
+streak++;
+
+datum.setDate(
+datum.getDate() - 1
+);
+
+}
+else {
+
+break;
+
+}
+
+}
+
+
+document
+.getElementById("streak")
+.innerHTML =
+streak;
+
+}
+
+
+
+/* EINSTELLUNGEN */
+
+function einstellungenLaden() {
+
+document
+.getElementById("nameInput")
+.value =
+name;
+
+
+document
+.getElementById("lernzielInput")
+.value =
+lernziel;
+
+
+if (name) {
+
+document
+.getElementById("willkommen")
+innerHTML =
+"👋 Hallo " +
+name +
+"!";
+
+document
+.getElementById("begrüßung")
+innerHTML =
+"Bereit für deine nächste Lernsession?";
+
+}
+
+}
+
+
+function einstellungenSpeichern() {
+
+name =
+document
+.getElementById("nameInput")
+.value;
+
+
+lernziel =
+Number(
+document
+.getElementById("lernzielInput")
+.value
+) || 60;
+
+
+localStorage.setItem(
+"studyhubName",
+name
+);
+
+localStorage.setItem(
+"studyhubLernziel",
+lernziel
+);
+
+
+einstellungenLaden();
+
+dashboardAktualisieren();
+
+
+alert(
+"✅ Einstellungen gespeichert!"
+);
+
+}
+
+
+
+/* ALLE DATEN LÖSCHEN */
+
+function datenLoeschen() {
+
+let sicher =
+confirm(
+"Möchtest du wirklich alle StudyHub-Daten löschen?"
+);
+
+
+if (!sicher) return;
+
+
+localStorage.removeItem("studyhubNoten");
+
+localStorage.removeItem("studyhubAufgaben");
+
+localStorage.removeItem("studyhubSmart");
+
+localStorage.removeItem("studyhubLernzeit");
+
+localStorage.removeItem("studyhubName");
+
+localStorage.removeItem("studyhubLernziel");
+
+localStorage.removeItem("studyhubTage");
+
+
+alert(
+"🗑️ Alle Daten wurden gelöscht."
+);
+
+
+location.reload();
+
+}
+
+
+
+/* START */
+
+notenAnzeigen();
+
+aufgabenAnzeigen();
+
+smartAnzeigen();
+
+fachAnzeigen();
+
+anzeigen();
+
+dashboardAktualisieren();
+
+heutigeAufgabenAnzeigen();
+
+streakBerechnen();
+
+einstellungenLaden();
+
+statistikAnzeigen();
+
+kalenderAnzeigen();
+
+
+</script>
+
+</body>
+
+</html>
