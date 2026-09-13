@@ -4,162 +4,205 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyHub – Dein smarter Lernplaner</title>
+<title>StudyHub Plus – Dein smarter Lernbereich</title>
 
 <meta name="description"
-content="StudyHub – dein smarter Lernplaner mit Exam Planner, Study Templates, Advanced Stats, Pomodoro, Notenrechner und mehr.">
+content="StudyHub Plus – smarter Lernplaner mit Exam Planner, Smart Study, Wissenslücken, Prüfungssimulator, Lernmodus, Brain Dump und Wiederholungen.">
 
 <style>
 :root{
-  --primary:#8064dc;
-  --primary2:#a58cf0;
-  --bg:#f7f5fc;
+  --bg:#f6f7fb;
   --card:#ffffff;
-  --text:#25222d;
-  --muted:#777080;
-  --border:#e6e0f0;
-  --light:#eee8ff;
-  --success:#65b891;
-  --danger:#dc6262;
-  --shadow:0 8px 28px rgba(70,50,110,.10);
+  --text:#20222b;
+  --muted:#747887;
+  --line:#e5e6ee;
+  --accent:#6c63ff;
+  --accent2:#8d86ff;
+  --good:#31a852;
+  --warn:#e7a62d;
+  --bad:#df5050;
+  --shadow:0 12px 35px rgba(30,32,50,.08);
+  --radius:20px;
 }
 
 *{
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  transition:.2s;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
-body.dark{
-  --bg:#17151d;
-  --card:#24212d;
-  --text:#f5f2fa;
-  --muted:#b8b1c5;
-  --border:#3c3748;
-  --light:#352e43;
-}
-
-header{
-  max-width:1100px;
-  margin:auto;
-  padding:28px 18px 8px;
-}
-
-header h1{
-  margin:0;
-  font-size:30px;
-}
-
-header p{
-  color:var(--muted);
-  margin:5px 0;
-}
-
-nav{
-  max-width:1100px;
-  margin:auto;
-  padding:12px 18px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
+button,
+input,
+textarea,
+select{
+  font:inherit;
 }
 
 button{
-  border:0;
-  border-radius:12px;
-  padding:11px 15px;
-  background:var(--primary);
-  color:white;
-  font-weight:700;
   cursor:pointer;
+  border:0;
 }
 
-button.secondary{
-  background:var(--light);
-  color:var(--primary);
+button:hover{
+  transform:translateY(-1px);
 }
 
-button.danger{
-  background:var(--danger);
+.app{
+  width:min(1180px,100%);
+  margin:auto;
+  padding:20px;
 }
 
-nav button{
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+.brand{
+  font-size:26px;
+  font-weight:900;
+}
+
+.brand span{
+  color:var(--accent);
+}
+
+header small{
+  color:var(--muted);
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:10px;
+  margin-bottom:10px;
+}
+
+.nav button{
+  white-space:nowrap;
   background:var(--card);
   color:var(--text);
-  border:1px solid var(--border);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:10px 14px;
 }
 
-nav .plus-button{
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
+.nav button.active{
+  background:var(--accent);
   color:white;
-  border:0;
-}
-
-main{
-  max-width:1100px;
-  margin:auto;
-  padding:12px 18px 60px;
-}
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
+  border-color:var(--accent);
 }
 
 .card{
   background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
   padding:20px;
-  margin:14px 0;
   box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+
+.hero{
+  color:white;
+  border:0;
+  background:linear-gradient(135deg,#6c63ff,#928aff);
+}
+
+.hero h1{
+  font-size:34px;
+  margin:0 0 8px;
+}
+
+.hero p{
+  margin:0;
+  opacity:.9;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  gap:14px;
 }
 
 .grid2{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:16px;
 }
 
 .stat{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:18px;
+  font-size:29px;
+  font-weight:900;
+  margin-top:8px;
 }
 
-.stat b{
-  display:block;
-  font-size:28px;
-  margin-top:5px;
+.kpi{
+  font-size:24px;
+  font-weight:900;
+}
+
+.label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+h2{
+  font-size:23px;
+  margin-top:0;
+}
+
+h3{
+  margin-top:0;
+}
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  align-items:center;
+}
+
+.spread{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.formgrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
 input,
-select,
-textarea{
+textarea,
+select{
   width:100%;
-  padding:11px;
-  margin:5px 0 12px;
-  border-radius:11px;
-  border:1px solid var(--border);
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--line);
   background:var(--card);
   color:var(--text);
-  font-family:inherit;
+  outline:none;
 }
 
 textarea{
@@ -167,34 +210,151 @@ textarea{
   resize:vertical;
 }
 
-label{
-  font-size:13px;
-  color:var(--muted);
-  font-weight:700;
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--accent);
+}
+
+button{
+  background:#ececf5;
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:750;
+}
+
+.primary{
+  background:var(--accent);
+  color:white;
+}
+
+.good{
+  background:#e8f8ed;
+  color:#27783a;
+}
+
+.warn{
+  background:#fff3dd;
+  color:#996519;
+}
+
+.danger{
+  background:#ffeaea;
+  color:#a82d2d;
+}
+
+.pill{
+  display:inline-flex;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#eeeeff;
+  color:var(--accent);
+  font-size:12px;
+  font-weight:800;
+}
+
+.list{
+  display:grid;
+  gap:9px;
+}
+
+.item{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  background:var(--card);
 }
 
 .progress{
   width:100%;
   height:10px;
-  border-radius:20px;
-  background:var(--light);
+  border-radius:99px;
+  background:#ececf3;
   overflow:hidden;
 }
 
 .progress span{
   display:block;
   height:100%;
-  background:linear-gradient(90deg,var(--primary),var(--primary2));
+  background:var(--accent);
+  border-radius:99px;
+  transition:.25s;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.small{
+  font-size:13px;
+}
+
+.big{
+  font-size:44px;
+  font-weight:900;
+}
+
+.score{
+  font-size:52px;
+  font-weight:900;
+  color:var(--accent);
+}
+
+.feature{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:15px;
+}
+
+.icon{
+  font-size:27px;
+}
+
+.notice{
+  background:#f0f0ff;
+  border:1px solid #ddddff;
+  border-radius:14px;
+  padding:14px;
+}
+
+.warning{
+  background:#fff4df;
+  border-color:#ffe1a8;
+}
+
+.success{
+  background:#ebf9ee;
+  border-color:#c9edcf;
+}
+
+.tag{
+  display:inline-block;
+  padding:5px 8px;
+  margin:3px;
+  border-radius:8px;
+  background:#f0f0f7;
+  font-size:12px;
+}
+
+.timer{
+  text-align:center;
+  font-size:68px;
+  font-weight:900;
+  margin:15px 0;
 }
 
 .center{
   text-align:center;
 }
 
-.timer{
-  font-size:58px;
-  font-weight:800;
-  margin:20px;
+hr{
+  border:0;
+  border-top:1px solid var(--line);
+  margin:20px 0;
 }
 
 table{
@@ -205,119 +365,105 @@ table{
 th,
 td{
   padding:10px;
-  border-bottom:1px solid var(--border);
+  border-bottom:1px solid var(--line);
   text-align:left;
 }
 
-.badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  background:var(--light);
-  color:var(--primary);
-  font-size:12px;
-  font-weight:800;
+.choice{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  margin-bottom:8px;
+  cursor:pointer;
 }
 
-.plus-hero{
-  background:linear-gradient(135deg,#8064dc,#a98cf1,#d9cdfd);
-  color:white;
-  border-radius:26px;
-  padding:30px;
-  position:relative;
-  overflow:hidden;
-  margin-bottom:18px;
+.choice:hover{
+  border-color:var(--accent);
 }
 
-.plus-hero:after{
-  content:"✨";
-  position:absolute;
-  right:25px;
-  top:18px;
-  font-size:65px;
-}
-
-.plus-hero h2{
-  font-size:32px;
-  margin:0 70px 8px 0;
-}
-
-.plus-grid{
+.feature-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.plus-card{
-  position:relative;
-  overflow:hidden;
-}
-
-.plus-card:before{
-  content:"✨";
-  position:absolute;
-  right:18px;
-  top:15px;
-  font-size:30px;
-}
-
-.plus-icon{
-  font-size:32px;
-}
-
-.feature-list{
-  line-height:1.9;
-  padding-left:20px;
-}
-
-.template{
-  background:var(--card);
-  border:2px dashed var(--border);
-  border-radius:18px;
-  padding:20px;
-  margin:15px 0;
-}
-
-.exam-card{
-  border-left:5px solid var(--primary);
-}
-
-.exam-countdown{
-  font-size:26px;
-  font-weight:800;
-  color:var(--primary);
-}
-
-.small{
-  font-size:13px;
-  color:var(--muted);
+  gap:14px;
 }
 
 .hidden{
-  display:none;
+  display:none!important;
 }
 
-@media(max-width:800px){
+#toast{
+  position:fixed;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#222;
+  color:#fff;
+  padding:12px 17px;
+  border-radius:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:100;
+}
+
+#toast.show{
+  opacity:1;
+}
+
+.dark{
+  --bg:#111218;
+  --card:#1b1c25;
+  --text:#f2f2f6;
+  --muted:#a7a8b4;
+  --line:#30313d;
+  --shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+.dark .nav button{
+  background:#1b1c25;
+}
+
+.dark input,
+.dark textarea,
+.dark select{
+  background:#1b1c25;
+}
+
+.dark .progress{
+  background:#30313d;
+}
+
+@media(max-width:850px){
 
   .grid{
     grid-template-columns:repeat(2,1fr);
   }
 
+}
+
+@media(max-width:600px){
+
+  .app{
+    padding:12px;
+  }
+
+  .grid,
   .grid2,
-  .plus-grid{
+  .formgrid,
+  .feature-grid{
     grid-template-columns:1fr;
   }
 
-}
-
-@media(max-width:500px){
-
-  .grid{
-    grid-template-columns:1fr 1fr;
+  .hero h1{
+    font-size:28px;
   }
 
   .timer{
-    font-size:45px;
+    font-size:52px;
+  }
+
+  .nav{
+    scrollbar-width:none;
   }
 
 }
@@ -326,1927 +472,942 @@ td{
 
 <body>
 
+<div class="app">
+
 <header>
 
-<h1>📚 StudyHub</h1>
+<div>
+  <div class="brand">Study<span>Hub</span> ✨</div>
+  <small>Dein smarter Lernbereich</small>
+</div>
 
-<p>Dein smarter Lernbereich für Schule & Prüfungen</p>
+<button onclick="toggleDark()">🌙</button>
 
 </header>
 
-<nav>
+<nav class="nav" id="nav"></nav>
 
-<button onclick="showSection('home')">🏠 Home</button>
-<button onclick="showSection('grades')">📝 Noten</button>
-<button onclick="showSection('timer')">⏱️ Timer</button>
-<button onclick="showSection('planner')">📚 Planer</button>
-<button onclick="showSection('calendar')">📅 Kalender</button>
-<button onclick="showSection('stats')">📊 Statistik</button>
-
-<button
-class="plus-button"
-onclick="showSection('plus')">
-✨ StudyHub Plus
-</button>
-
-<button
-class="secondary"
-onclick="showSection('settings')">
-⚙️
-</button>
-
-</nav>
-
-<main>
-
-<!-- HOME -->
-
-<section id="home" class="section active">
-
-<div class="grid">
-
-<div class="stat">
-🔥 Lernserie
-<b id="homeStreak">0</b>
-<span class="small">Tage</span>
-</div>
-
-<div class="stat">
-✅ Aufgaben
-<b id="homeDone">0</b>
-<span class="small">erledigt</span>
-</div>
-
-<div class="stat">
-⏱️ Lernzeit
-<b id="homeMinutes">0</b>
-<span class="small">Minuten</span>
-</div>
-
-<div class="stat">
-⭐ Notenschnitt
-<b id="homeAverage">–</b>
-<span class="small">aktuell</span>
-</div>
+<main id="app"></main>
 
 </div>
 
-<div class="card">
-
-<h2>🎯 Heutiges Lernziel</h2>
-
-<p id="homeGoal">0 / 30 Minuten</p>
-
-<div class="progress">
-<span id="homeGoalBar" style="width:0%"></span>
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>📌 Heute</h2>
-
-<div id="homeToday">
-Noch keine Aufgaben.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- NOTEN -->
-
-<section id="grades" class="section">
-
-<div class="card">
-
-<h2>📝 Notenrechner</h2>
-
-<div class="grid2">
-
-<div>
-<label>Fach / Prüfung</label>
-<input id="gradeName" placeholder="z. B. Mathe Klassenarbeit">
-</div>
-
-<div>
-<label>Note</label>
-<input id="gradeValue" type="number" min="1" max="6" step=".1">
-</div>
-
-<div>
-<label>Gewichtung</label>
-<input id="gradeWeight" type="number" value="100">
-</div>
-
-</div>
-
-<button onclick="addGrade()">
-➕ Note hinzufügen
-</button>
-
-<div id="gradesList"></div>
-
-<h3>
-Durchschnitt:
-<span id="averageGrade">–</span>
-</h3>
-
-</div>
-
-</section>
-
-
-<!-- TIMER -->
-
-<section id="timer" class="section">
-
-<div class="card center">
-
-<h2>⏱️ Pomodoro Timer</h2>
-
-<div
-id="timerDisplay"
-class="timer">
-25:00
-</div>
-
-<button onclick="startTimer()">Start</button>
-
-<button
-class="secondary"
-onclick="pauseTimer()">
-Pause
-</button>
-
-<button
-class="secondary"
-onclick="resetTimer()">
-Reset
-</button>
-
-<p>
-25 Minuten konzentriert lernen → 5 Minuten Pause
-</p>
-
-</div>
-
-</section>
-
-
-<!-- PLANER -->
-
-<section id="planner" class="section">
-
-<div class="card">
-
-<h2>📚 Aufgabenplaner</h2>
-
-<div class="grid2">
-
-<div>
-<label>Aufgabe</label>
-<input id="taskName" placeholder="z. B. Vokabeln lernen">
-</div>
-
-<div>
-<label>Fach</label>
-<input id="taskSubject" placeholder="z. B. Englisch">
-</div>
-
-<div>
-<label>Datum</label>
-<input id="taskDate" type="date">
-</div>
-
-<div>
-<label>Lernzeit</label>
-<input id="taskMinutes" type="number" value="30">
-</div>
-
-</div>
-
-<button onclick="addTask()">
-➕ Aufgabe hinzufügen
-</button>
-
-<div id="taskList"></div>
-
-</div>
-
-</section>
-
-
-<!-- KALENDER -->
-
-<section id="calendar" class="section">
-
-<div class="card">
-
-<h2>📅 Kalender</h2>
-
-<input
-id="calendarDate"
-type="date"
-onchange="renderCalendar()">
-
-<div id="calendarTasks"></div>
-
-</div>
-
-</section>
-
-
-<!-- STATISTIK -->
-
-<section id="stats" class="section">
-
-<div class="card">
-
-<h2>📊 Statistik</h2>
-
-<div class="grid">
-
-<div class="stat">
-Aufgaben
-<b id="statTasks">0</b>
-</div>
-
-<div class="stat">
-Erledigt
-<b id="statDone">0</b>
-</div>
-
-<div class="stat">
-Lernzeit
-<b id="statMinutes">0</b>
-</div>
-
-<div class="stat">
-Fortschritt
-<b id="statProgress">0%</b>
-</div>
-
-</div>
-
-<h3>📚 Fächer</h3>
-
-<div id="subjectStats"></div>
-
-</div>
-
-</section>
-
-
-<!-- STUDYHUB PLUS -->
-
-<section id="plus" class="section">
-
-<div class="plus-hero">
-
-<h2>✨ StudyHub Plus</h2>
-
-<p>
-Das komplette Upgrade für deine Lernorganisation.
-</p>
-
-<span class="badge">
-STUDYHUB PLUS
-</span>
-
-</div>
-
-
-<div class="plus-grid">
-
-
-<!-- EXAM PLANNER -->
-
-<div class="card plus-card">
-
-<div class="plus-icon">🎓</div>
-
-<span class="badge">
-EXAM PLANNER
-</span>
-
-<h2>Exam Planner 2026/27</h2>
-
-<p>
-Plane deine Prüfungen, Lernphasen und Themen an einem Ort.
-</p>
-
-<ul class="feature-list">
-
-<li>Prüfungen hinzufügen</li>
-<li>Countdown</li>
-<li>Themenliste</li>
-<li>Lernziele</li>
-<li>Fortschrittsanzeige</li>
-<li>automatische Lernaufgaben</li>
-
-</ul>
-
-<button onclick="openPlusTool('exam')">
-🎓 Exam Planner öffnen
-</button>
-
-</div>
-
-
-<!-- STUDY TEMPLATES -->
-
-<div class="card plus-card">
-
-<div class="plus-icon">📄</div>
-
-<span class="badge">
-STUDY TEMPLATES
-</span>
-
-<h2>Study Templates</h2>
-
-<p>
-Digitale Vorlagen für deine perfekte Lernorganisation.
-</p>
-
-<ul class="feature-list">
-
-<li>Wochenplan</li>
-<li>Exam Checklist</li>
-<li>Lernsession</li>
-<li>Zusammenfassung</li>
-<li>Study Tracker</li>
-
-</ul>
-
-<button onclick="openPlusTool('templates')">
-📄 Templates öffnen
-</button>
-
-</div>
-
-
-<!-- ADVANCED STATS -->
-
-<div class="card plus-card">
-
-<div class="plus-icon">📊</div>
-
-<span class="badge">
-ADVANCED STATS
-</span>
-
-<h2>Advanced Stats</h2>
-
-<p>
-Analysiere deinen Lernfortschritt detaillierter.
-</p>
-
-<ul class="feature-list">
-
-<li>Lernzeit</li>
-<li>Aufgabenquote</li>
-<li>Fächerfortschritt</li>
-<li>Prüfungsfortschritt</li>
-<li>Produktivität</li>
-
-</ul>
-
-<button onclick="openPlusTool('advanced')">
-📊 Advanced Stats öffnen
-</button>
-
-</div>
-
-
-<!-- BUNDLE -->
-
-<div class="card plus-card">
-
-<div class="plus-icon">🎁</div>
-
-<span class="badge">
-SMART STUDY BUNDLE
-</span>
-
-<h2>Smart Study Bundle</h2>
-
-<p>
-Alle StudyHub-Plus-Funktionen kombiniert.
-</p>
-
-<ul class="feature-list">
-
-<li>Exam Planner</li>
-<li>Study Templates</li>
-<li>Advanced Stats</li>
-<li>Study Checklists</li>
-<li>Bonus-Tools</li>
-
-</ul>
-
-<button onclick="openPlusTool('bundle')">
-🎁 Bundle öffnen
-</button>
-
-</div>
-
-</div>
-
-
-<!-- PLUS TOOLS -->
-
-<div
-id="plusTools"
-class="card hidden">
-</div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section id="settings" class="section">
-
-<div class="card">
-
-<h2>⚙️ Einstellungen</h2>
-
-<label>Tägliches Lernziel</label>
-
-<input
-id="dailyGoal"
-type="number"
-value="30">
-
-<br>
-
-<button onclick="saveSettings()">
-💾 Speichern
-</button>
-
-<button
-class="secondary"
-onclick="toggleDark()">
-🌙 Dark Mode
-</button>
-
-<hr>
-
-<button onclick="exportData()">
-📤 Daten exportieren
-</button>
-
-<button
-class="danger"
-onclick="deleteAll()">
-🗑️ Alles löschen
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-
-<footer class="center">
-
-<p>📚 StudyHub · Lernen smarter organisieren</p>
-
-</footer>
+<div id="toast"></div>
 
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/* =========================================================
+   STUDYHUB PLUS
+   ========================================================= */
 
-let grades =
-JSON.parse(
-localStorage.getItem("studyhub_grades") || "[]"
-);
+const STORAGE_KEY="studyhub_plus_complete_v1";
 
-let tasks =
-JSON.parse(
-localStorage.getItem("studyhub_tasks") || "[]"
-);
+const DEFAULT_DATA={
+  grades:[],
+  tasks:[],
+  exams:[],
+  materials:[],
+  mistakes:[],
+  reviews:[],
+  sessions:[],
+  templates:{
+    weekly:"",
+    summary:"",
+    session:""
+  },
+  settings:{
+    dark:false,
+    dailyGoal:60
+  },
+  minutes:0,
+  streak:0,
+  lastStudy:"",
+  brainDump:""
+};
 
-let exams =
-JSON.parse(
-localStorage.getItem("studyhub_exams") || "[]"
-);
-
-let templates =
-JSON.parse(
-localStorage.getItem("studyhub_templates") || "[]"
-);
-
-let totalMinutes =
-Number(
-localStorage.getItem("studyhub_minutes") || 0
-);
-
-let dailyGoal =
-Number(
-localStorage.getItem("studyhub_daily_goal") || 30
-);
+let db=loadDatabase();
 
 
-/* =========================
-   SAVE
-========================= */
+/* =========================================================
+   STORAGE
+   ========================================================= */
 
-function saveAll(){
+function loadDatabase(){
 
-localStorage.setItem(
-"studyhub_grades",
-JSON.stringify(grades)
-);
+  try{
 
-localStorage.setItem(
-"studyhub_tasks",
-JSON.stringify(tasks)
-);
+    const saved=JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    );
 
-localStorage.setItem(
-"studyhub_exams",
-JSON.stringify(exams)
-);
+    return mergeDefaults(DEFAULT_DATA,saved||{});
 
-localStorage.setItem(
-"studyhub_templates",
-JSON.stringify(templates)
-);
+  }catch(error){
 
-localStorage.setItem(
-"studyhub_minutes",
-totalMinutes
-);
+    return JSON.parse(
+      JSON.stringify(DEFAULT_DATA)
+    );
 
-localStorage.setItem(
-"studyhub_daily_goal",
-dailyGoal
-);
+  }
 
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+function mergeDefaults(base,saved){
 
-function showSection(id){
+  const result=JSON.parse(JSON.stringify(base));
 
-document
-.querySelectorAll(".section")
-.forEach(section =>
-section.classList.remove("active")
-);
+  Object.keys(saved||{}).forEach(key=>{
 
-document
-.getElementById(id)
-.classList.add("active");
+    if(
+      saved[key] &&
+      typeof saved[key]==="object" &&
+      !Array.isArray(saved[key]) &&
+      typeof result[key]==="object" &&
+      !Array.isArray(result[key])
+    ){
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+      result[key]={
+        ...result[key],
+        ...saved[key]
+      };
 
-renderAll();
+    }else{
 
-}
+      result[key]=saved[key];
 
+    }
 
-/* =========================
-   ESCAPE
-========================= */
+  });
 
-function escapeHTML(text){
-
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+  return result;
 
 }
 
 
-/* =========================
-   DATE
-========================= */
+function saveDatabase(){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(db)
+  );
+
+}
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function esc(value){
+
+  return String(value ?? "")
+    .replace(/[&<>"']/g,function(char){
+
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[char];
+
+    });
+
+}
+
 
 function today(){
 
-return new Date()
-.toISOString()
-.slice(0,10);
+  return new Date()
+    .toISOString()
+    .slice(0,10);
 
 }
 
 
-/* =========================
+function dateDE(date){
+
+  if(!date) return "—";
+
+  return new Date(
+    date+"T00:00:00"
+  ).toLocaleDateString("de-DE");
+
+}
+
+
+function daysUntil(date){
+
+  return Math.ceil(
+    (
+      new Date(date+"T23:59:59")-
+      new Date()
+    )/
+    86400000
+  );
+
+}
+
+
+function average(values){
+
+  if(!values.length) return 0;
+
+  return values.reduce(
+    (a,b)=>a+b,
+    0
+  )/values.length;
+
+}
+
+
+function toast(message){
+
+  const element=
+    document.getElementById("toast");
+
+  element.textContent=message;
+
+  element.classList.add("show");
+
+  setTimeout(
+    ()=>element.classList.remove("show"),
+    1800
+  );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+const NAV_ITEMS=[
+
+  ["🏠","Home","home"],
+  ["📚","Noten","grades"],
+  ["⏱️","Timer","timer"],
+  ["✅","Aufgaben","tasks"],
+  ["🎓","Exam Planner","exams"],
+  ["🧠","Lernmaterial","materials"],
+  ["🤖","Smart Study","smart"],
+  ["🧪","Prüfungssimulator","simulator"],
+  ["🧩","Wissenslücken","gaps"],
+  ["🧹","Brain Dump","brain"],
+  ["🔁","Wiederholen","review"],
+  ["📊","Advanced Stats","stats"],
+  ["✨","StudyHub Plus","plus"],
+  ["⚙️","Einstellungen","settings"]
+
+];
+
+
+function renderNavigation(active){
+
+  document.getElementById("nav").innerHTML=
+
+    NAV_ITEMS.map(item=>`
+
+      <button
+        class="${active===item[2]?"active":""}"
+        onclick="showPage('${item[2]}')"
+      >
+
+        ${item[0]} ${item[1]}
+
+      </button>
+
+    `).join("");
+
+}
+
+
+function showPage(page){
+
+  renderNavigation(page);
+
+  const pages={
+    home:renderHome,
+    grades:renderGrades,
+    timer:renderTimer,
+    tasks:renderTasks,
+    exams:renderExams,
+    materials:renderMaterials,
+    smart:renderSmartStudy,
+    simulator:renderSimulator,
+    gaps:renderGaps,
+    brain:renderBrainDump,
+    review:renderReview,
+    stats:renderStats,
+    plus:renderPlus,
+    settings:renderSettings
+  };
+
+  if(pages[page]){
+
+    pages[page]();
+
+  }
+
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+function renderHome(){
+
+  const completed=
+    db.tasks.filter(task=>task.done).length;
+
+  const grade=
+    db.grades.length
+      ? average(
+          db.grades.map(g=>+g.grade)
+        ).toFixed(2)
+      : "—";
+
+  const nextExam=
+    [...db.exams]
+      .filter(e=>daysUntil(e.date)>=0)
+      .sort(
+        (a,b)=>
+          daysUntil(a.date)-
+          daysUntil(b.date)
+      )[0];
+
+  const openTasks=
+    db.tasks
+      .filter(t=>!t.done)
+      .slice(0,5);
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+  <h1>StudyHub Plus ✨</h1>
+
+  <p>
+    Dein kompletter Lern-Workflow —
+    von der Prüfung bis zur letzten Wiederholung.
+  </p>
+
+  <div class="row" style="margin-top:16px">
+
+    <button onclick="showPage('smart')">
+      🤖 Was soll ich heute lernen?
+    </button>
+
+    <button onclick="showPage('brain')">
+      🧹 Brain Dump
+    </button>
+
+    <button onclick="showPage('exams')">
+      🎓 Prüfung planen
+    </button>
+
+  </div>
+
+</section>
+
+
+<div class="grid">
+
+<div class="card">
+
+<div class="label">Lernzeit</div>
+
+<div class="stat">
+${db.minutes} min
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="label">
+Aufgaben erledigt
+</div>
+
+<div class="stat">
+${completed}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="label">
+Notenschnitt
+</div>
+
+<div class="stat">
+${grade}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="label">
+Streak
+</div>
+
+<div class="stat">
+🔥 ${db.streak}
+</div>
+
+</div>
+
+</div>
+
+
+<div class="grid2">
+
+<div class="card">
+
+<h2>🎓 Nächste Prüfung</h2>
+
+${
+nextExam
+?
+`
+
+<div class="item">
+
+<div class="spread">
+
+<b>
+${esc(nextExam.name)}
+</b>
+
+<span class="pill">
+${daysUntil(nextExam.date)} Tage
+</span>
+
+</div>
+
+<p class="muted">
+${dateDE(nextExam.date)}
+</p>
+
+<div class="progress">
+
+<span style="width:${nextExam.progress}%"></span>
+
+</div>
+
+<p class="small">
+${nextExam.progress}% vorbereitet
+</p>
+
+<button
+onclick="showPage('exams')"
+>
+Prüfung öffnen
+</button>
+
+</div>
+
+`
+:
+`<p class="muted">
+Noch keine Prüfung geplant.
+</p>`
+}
+
+</div>
+
+
+<div class="card">
+
+<h2>📋 Als Nächstes</h2>
+
+<div class="list">
+
+${
+openTasks.length
+?
+openTasks.map(task=>`
+
+<div class="item">
+
+<b>
+${esc(task.name)}
+</b>
+
+<div class="small muted">
+
+${esc(task.subject||"Ohne Fach")}
+
+${task.date
+? " · "+dateDE(task.date)
+: ""}
+
+${task.minutes
+? " · "+task.minutes+" min"
+: ""}
+
+</div>
+
+</div>
+
+`).join("")
+:
+`<p class="muted">
+Alles erledigt 🎉
+</p>`
+}
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>✨ Dein nächster sinnvoller Schritt</h2>
+
+<div class="feature">
+
+<div class="icon">🧠</div>
+
+<div>
+
+<b>
+Nicht überlegen. Einfach starten.
+</b>
+
+<p class="muted">
+
+StudyHub kann anhand deiner
+Prüfungen und Aufgaben bestimmen,
+was du als Nächstes machen solltest.
+
+</p>
+
+<button
+class="primary"
+onclick="showPage('smart')"
+>
+🤖 Smart Study öffnen
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
    GRADES
-========================= */
-
-function addGrade(){
-
-let name =
-document.getElementById("gradeName")
-.value.trim();
-
-let value =
-Number(
-document.getElementById("gradeValue")
-.value
-);
-
-let weight =
-Number(
-document.getElementById("gradeWeight")
-.value
-) || 100;
-
-if(!name || !value){
-
-alert("Bitte Fach und Note eingeben.");
-
-return;
-
-}
-
-grades.push({
-
-name:name,
-value:value,
-weight:weight
-
-});
-
-document.getElementById("gradeName").value="";
-document.getElementById("gradeValue").value="";
-
-saveAll();
-
-renderGrades();
-
-renderHome();
-
-}
-
+   ========================================================= */
 
 function renderGrades(){
 
-let container =
-document.getElementById("gradesList");
+  const averageGrade=
+    weightedAverage();
 
-if(grades.length===0){
+  document.getElementById("app").innerHTML=`
 
-container.innerHTML=
-"<p>Noch keine Noten eingetragen.</p>";
+<div class="card">
 
-document.getElementById("averageGrade")
-.textContent="–";
+<h2>📚 Noten</h2>
 
-return;
+<div class="formgrid">
 
-}
-
-let total=0;
-let weights=0;
-
-let html=
-"<table><tr><th>Fach</th><th>Note</th><th>Gewichtung</th></tr>";
-
-grades.forEach(g=>{
-
-total += g.value*g.weight;
-weights += g.weight;
-
-html += `
-<tr>
-<td>${escapeHTML(g.name)}</td>
-<td>${g.value}</td>
-<td>${g.weight}%</td>
-</tr>
-`;
-
-});
-
-html += "</table>";
-
-container.innerHTML=html;
-
-let average =
-weights ? total/weights : 0;
-
-document.getElementById("averageGrade")
-.textContent =
-average.toFixed(2);
-
-document.getElementById("homeAverage")
-.textContent =
-average.toFixed(2);
-
-}
-
-
-/* =========================
-   TASKS
-========================= */
-
-function addTask(){
-
-let name =
-document
-.getElementById("taskName")
-.value.trim();
-
-let subject =
-document
-.getElementById("taskSubject")
-.value.trim() || "Allgemein";
-
-let date =
-document.getElementById("taskDate")
-.value || today();
-
-let minutes =
-Number(
-document.getElementById("taskMinutes")
-.value
-) || 30;
-
-if(!name){
-
-alert("Bitte eine Aufgabe eingeben.");
-
-return;
-
-}
-
-tasks.push({
-
-id:Date.now(),
-
-name:name,
-
-subject:subject,
-
-date:date,
-
-minutes:minutes,
-
-done:false
-
-});
-
-document.getElementById("taskName").value="";
-
-saveAll();
-
-renderAll();
-
-}
-
-
-function toggleTask(id){
-
-let task =
-tasks.find(t=>t.id===id);
-
-if(!task) return;
-
-task.done=!task.done;
-
-saveAll();
-
-renderAll();
-
-}
-
-
-function deleteTask(id){
-
-tasks =
-tasks.filter(
-task=>task.id!==id
-);
-
-saveAll();
-
-renderAll();
-
-}
-
-
-function renderTasks(){
-
-let container =
-document.getElementById("taskList");
-
-if(tasks.length===0){
-
-container.innerHTML=
-"<p>Noch keine Aufgaben.</p>";
-
-return;
-
-}
-
-let html="<table>";
-
-html += `
-<tr>
-<th></th>
-<th>Aufgabe</th>
-<th>Fach</th>
-<th>Datum</th>
-<th>Zeit</th>
-<th></th>
-</tr>
-`;
-
-tasks
-.sort((a,b)=>a.date.localeCompare(b.date))
-.forEach(task=>{
-
-html += `
-<tr>
-
-<td>
 <input
-type="checkbox"
-${task.done?"checked":""}
-onchange="toggleTask(${task.id})">
+id="gradeSubject"
+placeholder="Fach"
+/>
+
+<input
+id="gradeValue"
+type="number"
+min="1"
+max="6"
+step="0.1"
+placeholder="Note"
+/>
+
+<input
+id="gradeWeight"
+type="number"
+min="1"
+value="1"
+placeholder="Gewichtung"
+/>
+
+<button
+class="primary"
+onclick="addGrade()"
+>
+➕ Note hinzufügen
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎯 Dein aktueller Schnitt</h2>
+
+<div class="score">
+${averageGrade}
+</div>
+
+<p class="muted">
+Gewichteter Durchschnitt
+</p>
+
+
+<hr>
+
+
+<h3>
+🎯 Welche Note brauche ich für mein Ziel?
+</h3>
+
+<div class="formgrid">
+
+<input
+id="targetGrade"
+type="number"
+min="1"
+max="6"
+step="0.1"
+placeholder="Zielnote z.B. 2.0"
+/>
+
+<input
+id="targetWeight"
+type="number"
+min="1"
+value="1"
+placeholder="Gewichtung nächste Note"
+/>
+
+</div>
+
+<button
+onclick="calculateTargetGrade()"
+style="margin-top:10px"
+>
+Berechnen
+</button>
+
+<div
+id="targetResult"
+class="notice hidden"
+style="margin-top:12px"
+></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Meine Noten</h2>
+
+<table>
+
+<tr>
+
+<th>Fach</th>
+<th>Note</th>
+<th>Gewichtung</th>
+<th></th>
+
+</tr>
+
+${
+db.grades.map(
+(g,index)=>`
+
+<tr>
+
+<td>
+${esc(g.subject)}
 </td>
 
 <td>
-${escapeHTML(task.name)}
+${g.grade}
 </td>
 
 <td>
-${escapeHTML(task.subject)}
-</td>
-
-<td>
-${task.date}
-</td>
-
-<td>
-${task.minutes} Min.
+${g.weight}
 </td>
 
 <td>
 
 <button
 class="danger"
-onclick="deleteTask(${task.id})">
+onclick="deleteGrade(${index})"
+>
 ×
 </button>
 
 </td>
 
 </tr>
-`;
 
-});
-
-html += "</table>";
-
-container.innerHTML=html;
-
+`
+).join("")
 }
 
-
-/* =========================
-   HOME
-========================= */
-
-function renderHome(){
-
-let done =
-tasks.filter(t=>t.done).length;
-
-document.getElementById("homeDone")
-.textContent=done;
-
-document.getElementById("homeMinutes")
-.textContent=totalMinutes;
-
-let todayTasks =
-tasks.filter(
-t=>t.date===today()
-);
-
-let todayMinutes =
-todayTasks
-.filter(t=>t.done)
-.reduce(
-(sum,t)=>sum+t.minutes,
-0
-);
-
-document.getElementById("homeGoal")
-.textContent=
-`${todayMinutes} / ${dailyGoal} Minuten`;
-
-document.getElementById("homeGoalBar")
-.style.width =
-Math.min(
-100,
-(todayMinutes/dailyGoal)*100
-)+"%";
-
-let home =
-document.getElementById("homeToday");
-
-if(todayTasks.length===0){
-
-home.innerHTML=
-"Noch keine Aufgaben für heute.";
-
-}else{
-
-home.innerHTML =
-todayTasks
-.map(t=>`
-
-<p>
-
-${t.done?"✅":"⬜"}
-
-${escapeHTML(t.name)}
-
-· ${t.minutes} Min.
-
-</p>
-
-`)
-.join("");
-
-}
-
-}
-
-
-/* =========================
-   CALENDAR
-========================= */
-
-function renderCalendar(){
-
-let date =
-document.getElementById("calendarDate")
-.value || today();
-
-let list =
-tasks.filter(
-t=>t.date===date
-);
-
-let container =
-document.getElementById("calendarTasks");
-
-if(list.length===0){
-
-container.innerHTML=
-"<p>Keine Aufgaben an diesem Tag.</p>";
-
-return;
-
-}
-
-container.innerHTML =
-list
-.map(t=>`
-
-<div class="template">
-
-<b>
-${t.done?"✅":"⬜"}
-${escapeHTML(t.name)}
-</b>
-
-<p class="small">
-${escapeHTML(t.subject)}
-· ${t.minutes} Minuten
-</p>
+</table>
 
 </div>
 
-`)
-.join("");
+`;
 
 }
 
 
-/* =========================
-   BASIC STATS
-========================= */
+function weightedAverage(){
 
-function renderStats(){
+  if(!db.grades.length)
+    return "—";
 
-let done =
-tasks.filter(t=>t.done).length;
+  const weight=
+    db.grades.reduce(
+      (sum,g)=>sum+(+g.weight||1),
+      0
+    );
 
-let progress =
-tasks.length
-? Math.round(
-done/tasks.length*100
-)
-:0;
+  const total=
+    db.grades.reduce(
+      (sum,g)=>
+        sum+
+        (+g.grade)*
+        (+g.weight||1),
+      0
+    );
 
-document.getElementById("statTasks")
-.textContent=tasks.length;
+  return (total/weight).toFixed(2);
 
-document.getElementById("statDone")
-.textContent=done;
-
-document.getElementById("statMinutes")
-.textContent=totalMinutes;
-
-document.getElementById("statProgress")
-.textContent=progress+"%";
+}
 
 
-let subjects =
-[...new Set(
-tasks.map(t=>t.subject)
-)];
+function addGrade(){
 
-let html="";
+  const subject=
+    document.getElementById("gradeSubject")
+    .value.trim();
 
-subjects.forEach(subject=>{
+  const grade=
+    +document.getElementById("gradeValue")
+    .value;
 
-let list =
-tasks.filter(
-t=>t.subject===subject
-);
+  const weight=
+    +document.getElementById("gradeWeight")
+    .value||1;
 
-let completed =
-list.filter(
-t=>t.done
-).length;
+  if(!subject||!grade){
 
-let percent =
-Math.round(
-completed/list.length*100
-);
+    toast("Fach und Note eingeben.");
 
-html += `
+    return;
 
-<div style="margin:15px 0">
+  }
 
-<b>
-${escapeHTML(subject)}
-</b>
+  db.grades.push({
+    subject,
+    grade,
+    weight
+  });
 
-<span class="small">
-${completed}/${list.length}
-</span>
+  saveDatabase();
 
-<div class="progress">
+  renderGrades();
+
+  toast("Note gespeichert.");
+
+}
+
+
+function deleteGrade(index){
+
+  db.grades.splice(index,1);
+
+  saveDatabase();
+
+  renderGrades();
+
+}
+
+
+function calculateTargetGrade(){
+
+  const target=
+    +document.getElementById("targetGrade").value;
+
+  const weight=
+    +document.getElementById("targetWeight").value||1;
+
+  if(!target){
+
+    toast("Zielnote eingeben.");
+
+    return;
+
+  }
+
+  const totalWeight=
+    db.grades.reduce(
+      (sum,g)=>sum+(+g.weight||1),
+      0
+    );
+
+  const currentPoints=
+    db.grades.reduce(
+      (sum,g)=>
+        sum+
+        (+g.grade)*
+        (+g.weight||1),
+      0
+    );
+
+  const needed=
+    (
+      target*
+      (totalWeight+weight)-
+      currentPoints
+    )/weight;
+
+  const result=
+    document.getElementById("targetResult");
+
+  result.classList.remove("hidden");
+
+  if(needed<=1){
+
+    result.innerHTML=`
+      🎉 Du kannst dein Ziel mit einer sehr guten nächsten Note erreichen.
+      Benötigte Note:
+      <b>${Math.max(1,needed).toFixed(2)}</b>
+    `;
+
+  }else if(needed<=6){
+
+    result.innerHTML=`
+      Du brauchst ungefähr
+      <b>${needed.toFixed(2)}</b>
+      bei dieser Gewichtung.
+    `;
+
+  }else{
+
+    result.innerHTML=`
+      Mit nur einer nächsten Note dieser Gewichtung
+      ist das Ziel rechnerisch nicht erreichbar.
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   TIMER / LERNMODUS
+   ========================================================= */
+
+let timer={
+  seconds:1500,
+  running:false,
+  mode:"focus",
+  interval:null
+};
+
+
+function renderTimer(){
+
+  document.getElementById("app").innerHTML=`
+
+<div class="card center">
+
+<h2>⏱️ Lernmodus</h2>
+
+<p class="muted">
+Ein Fokusblock dauert 25 Minuten.
+Danach folgt eine kurze Pause.
+</p>
+
+<div
+id="timerClock"
+class="timer"
+>
+25:00
+</div>
 
 <span
-style="width:${percent}%">
+class="pill"
+id="timerLabel"
+>
+Fokus
 </span>
 
-</div>
+<div
+class="row"
+style="justify-content:center;margin-top:15px"
+>
 
-</div>
-
-`;
-
-});
-
-document.getElementById("subjectStats")
-.innerHTML =
-html ||
-"<p>Noch keine Fächer.</p>";
-
-}
-
-
-/* =========================
-   EXAM PLANNER
-========================= */
-
-function renderExamPlanner(){
-
-let container =
-document.getElementById("examPlannerArea");
-
-if(!container) return;
-
-let html=`
-
-<h2>🎓 Exam Planner 2026/27</h2>
-
-<p>
-Plane deine Prüfungen und behalte deinen Lernfortschritt im Blick.
-</p>
-
-<div class="grid2">
-
-<div>
-
-<label>
-Prüfung / Fach
-</label>
-
-<input
-id="examName"
-placeholder="z. B. Mathe Klausur">
-
-</div>
-
-<div>
-
-<label>
-Prüfungsdatum
-</label>
-
-<input
-id="examDate"
-type="date">
-
-</div>
-
-<div>
-
-<label>
-Themen
-</label>
-
-<input
-id="examTopics"
-placeholder="z. B. Funktionen, Ableitungen">
-
-</div>
-
-<div>
-
-<label>
-Lernziel
-</label>
-
-<input
-id="examGoal"
-placeholder="z. B. Note verbessern">
-
-</div>
-
-</div>
-
-<button onclick="addExam()">
-➕ Prüfung hinzufügen
+<button
+class="primary"
+onclick="startTimer()"
+>
+▶ Start
 </button>
+
+<button
+onclick="pauseTimer()"
+>
+⏸ Pause
+</button>
+
+<button
+onclick="resetTimer()"
+>
+↺ Reset
+</button>
+
+</div>
 
 <hr>
 
-`;
+<div class="feature">
 
-if(exams.length===0){
+<div class="icon">🧠</div>
 
-html +=
-"<p>Noch keine Prüfungen geplant.</p>";
-
-}else{
-
-exams.forEach(exam=>{
-
-let todayDate =
-new Date();
-
-let examDate =
-new Date(
-exam.date+"T12:00:00"
-);
-
-let days =
-Math.ceil(
-(
-examDate-todayDate
-)/86400000
-);
-
-if(days<0) days=0;
-
-let percent =
-exam.progress || 0;
-
-html += `
-
-<div class="template exam-card">
-
-<h3>
-🎓 ${escapeHTML(exam.name)}
-</h3>
-
-<div class="exam-countdown">
-
-${days} Tage
-
-</div>
-
-<p>
-📅 ${exam.date}
-</p>
-
-<p>
-📚 ${escapeHTML(exam.topics)}
-</p>
-
-<p>
-🎯 ${escapeHTML(exam.goal)}
-</p>
-
-<label>
-Fortschritt: ${percent}%
-</label>
-
-<input
-type="range"
-min="0"
-max="100"
-value="${percent}"
-oninput="updateExamProgress(${exam.id},this.value)">
-
-<div class="progress">
-
-<span
-style="width:${percent}%">
-</span>
-
-</div>
-
-<br>
-
-<button
-class="danger"
-onclick="deleteExam(${exam.id})">
-
-Prüfung löschen
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-container.innerHTML=html;
-
-}
-
-
-function addExam(){
-
-let name =
-document.getElementById("examName").value.trim();
-
-let date =
-document.getElementById("examDate").value;
-
-let topics =
-document.getElementById("examTopics").value.trim();
-
-let goal =
-document.getElementById("examGoal").value.trim();
-
-if(!name || !date){
-
-alert(
-"Bitte mindestens Prüfung und Datum eingeben."
-);
-
-return;
-
-}
-
-exams.push({
-
-id:Date.now(),
-
-name:name,
-
-date:date,
-
-topics:topics || "Noch keine Themen",
-
-goal:goal || "Gut vorbereitet sein",
-
-progress:0
-
-});
-
-saveAll();
-
-renderExamPlanner();
-
-}
-
-
-function updateExamProgress(id,value){
-
-let exam =
-exams.find(e=>e.id===id);
-
-if(!exam) return;
-
-exam.progress=
-Number(value);
-
-saveAll();
-
-renderExamPlanner();
-
-}
-
-
-function deleteExam(id){
-
-exams =
-exams.filter(
-e=>e.id!==id
-);
-
-saveAll();
-
-renderExamPlanner();
-
-}
-
-
-/* =========================
-   STUDY TEMPLATES
-========================= */
-
-function renderTemplates(){
-
-let container =
-document.getElementById("templatesArea");
-
-if(!container) return;
-
-container.innerHTML=`
-
-<h2>📄 Study Templates</h2>
-
-<p>
-Deine digitalen Lernvorlagen direkt in StudyHub.
-</p>
-
-
-<div class="template">
-
-<h3>📅 Wochenplan</h3>
-
-<textarea
-id="weeklyTemplate"
-placeholder="
-Montag:
-Dienstag:
-Mittwoch:
-Donnerstag:
-Freitag:
-Samstag:
-Sonntag:
-"></textarea>
-
-<button
-onclick="saveTemplate('weeklyTemplate','Wochenplan')">
-
-💾 Wochenplan speichern
-
-</button>
-
-</div>
-
-
-<div class="template">
-
-<h3>🎓 Exam Checklist</h3>
-
-<label>
-
-<input
-type="checkbox">
-
-Themen gesammelt
-
-</label>
-
-<br>
-
-<label>
-
-<input
-type="checkbox">
-
-Lernplan erstellt
-
-</label>
-
-<br>
-
-<label>
-
-<input
-type="checkbox">
-
-Erste Wiederholung
-
-</label>
-
-<br>
-
-<label>
-
-<input
-type="checkbox">
-
-Prüfungssimulation
-
-</label>
-
-<br>
-
-<label>
-
-<input
-type="checkbox">
-
-Letzte Wiederholung
-
-</label>
-
-</div>
-
-
-<div class="template">
-
-<h3>🧠 Lernsession</h3>
-
-<label>
-Was lerne ich?
-</label>
-
-<input
-id="sessionTopic"
-placeholder="Thema">
-
-<label>
-Was möchte ich danach können?
-</label>
-
-<textarea
-id="sessionGoal"
-placeholder="Mein Lernziel..."></textarea>
-
-<label>
-Was habe ich gelernt?
-</label>
-
-<textarea
-id="sessionNotes"
-placeholder="Notizen..."></textarea>
-
-<button
-onclick="saveSession()">
-
-💾 Lernsession speichern
-
-</button>
-
-</div>
-
-
-<div class="template">
-
-<h3>📝 Zusammenfassung</h3>
-
-<input
-id="summaryTitle"
-placeholder="Thema">
-
-<textarea
-id="summaryText"
-placeholder="Deine Zusammenfassung..."></textarea>
-
-<button
-onclick="saveSummary()">
-
-💾 Zusammenfassung speichern
-
-</button>
-
-</div>
-
-
-<div class="template">
-
-<h3>📈 Study Tracker</h3>
-
-<p>
-Markiere jeden Lerntag:
-</p>
-
-<div
-id="studyTracker"
-style="
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:6px;
-">
-</div>
-
-</div>
-
-`;
-
-renderStudyTracker();
-
-}
-
-
-function saveTemplate(id,name){
-
-let text =
-document.getElementById(id).value;
-
-templates.push({
-
-type:name,
-
-text:text,
-
-date:today()
-
-});
-
-saveAll();
-
-alert(
-"Template gespeichert ✨"
-);
-
-}
-
-
-function saveSession(){
-
-let data={
-
-type:"Lernsession",
-
-topic:
-document.getElementById("sessionTopic").value,
-
-goal:
-document.getElementById("sessionGoal").value,
-
-notes:
-document.getElementById("sessionNotes").value,
-
-date:today()
-
-};
-
-templates.push(data);
-
-saveAll();
-
-alert(
-"Lernsession gespeichert ✨"
-);
-
-}
-
-
-function saveSummary(){
-
-let data={
-
-type:"Zusammenfassung",
-
-title:
-document.getElementById("summaryTitle").value,
-
-text:
-document.getElementById("summaryText").value,
-
-date:today()
-
-};
-
-templates.push(data);
-
-saveAll();
-
-alert(
-"Zusammenfassung gespeichert ✨"
-);
-
-}
-
-
-function renderStudyTracker(){
-
-let tracker =
-document.getElementById("studyTracker");
-
-if(!tracker) return;
-
-let todayDate =
-new Date();
-
-let html="";
-
-for(let i=6;i>=0;i--){
-
-let date =
-new Date();
-
-date.setDate(
-todayDate.getDate()-i
-);
-
-let key =
-date.toISOString().slice(0,10);
-
-let studied =
-tasks.some(
-t=>t.date===key && t.done
-);
-
-html += `
-
-<div
-style="
-padding:12px 5px;
-text-align:center;
-border-radius:10px;
-background:
-${studied
-?"var(--primary)"
-:"var(--light)"};
-color:
-${studied
-?"white"
-:"var(--text)"};
-">
-
-${date.toLocaleDateString(
-"de-DE",
-{weekday:"short"}
-)}
-
-<br>
-
-${date.getDate()}
-
-</div>
-
-`;
-
-}
-
-tracker.innerHTML=html;
-
-}
-
-
-/* =========================
-   ADVANCED STATS
-========================= */
-
-function renderAdvancedStats(){
-
-let container =
-document.getElementById("advancedStatsArea");
-
-if(!container) return;
-
-let completed =
-tasks.filter(t=>t.done).length;
-
-let completion =
-tasks.length
-? Math.round(
-completed/tasks.length*100
-)
-:0;
-
-let examProgress =
-exams.length
-? Math.round(
-exams.reduce(
-(sum,e)=>sum+(e.progress||0),0
-)/exams.length
-)
-:0;
-
-let averageSession =
-tasks.length
-? Math.round(
-tasks.reduce(
-(sum,t)=>sum+t.minutes,0
-)/tasks.length
-)
-:0;
-
-container.innerHTML=`
-
-<h2>📊 Advanced Stats</h2>
-
-<div class="grid">
-
-<div class="stat">
-
-⏱️ Lernzeit
+<div>
 
 <b>
-${totalMinutes}
+Lernmodus
 </b>
 
-<span class="small">
-Minuten
-</span>
+<p class="muted">
 
-</div>
+Während eines Fokusblocks:
+Handy weg, eine Aufgabe,
+25 Minuten konzentrieren.
 
-
-<div class="stat">
-
-✅ Aufgabenquote
-
-<b>
-${completion}%
-</b>
-
-</div>
-
-
-<div class="stat">
-
-🎓 Prüfungsfortschritt
-
-<b>
-${examProgress}%
-</b>
-
-</div>
-
-
-<div class="stat">
-
-📚 Ø Lernaufgabe
-
-<b>
-${averageSession}
-</b>
-
-<span class="small">
-Minuten
-</span>
-
-</div>
-
-</div>
-
-
-<h3>
-🎓 Prüfungen
-</h3>
-
-${exams.length
-? exams.map(e=>`
-
-<div class="template">
-
-<b>
-${escapeHTML(e.name)}
-</b>
-
-<div class="progress">
-
-<span
-style="width:${e.progress}%">
-</span>
-
-</div>
-
-<p>
-${e.progress}% abgeschlossen
 </p>
 
 </div>
-
-`).join("")
-:"<p>Noch keine Prüfungen.</p>"
-}
-
-`;
-
-
-}
-
-
-/* =========================
-   SMART BUNDLE
-========================= */
-
-function renderBundle(){
-
-let container =
-document.getElementById("bundleArea");
-
-if(!container) return;
-
-container.innerHTML=`
-
-<h2>🎁 Smart Study Bundle</h2>
-
-<p>
-Alle StudyHub-Plus-Tools in einer Übersicht.
-</p>
-
-<div class="grid2">
-
-<div class="template">
-
-<h3>🎓 Exam Planner</h3>
-
-<p>
-${exams.length}
-Prüfungen geplant.
-</p>
-
-<button
-onclick="showPlusTool('exam')">
-
-Öffnen
-
-</button>
-
-</div>
-
-
-<div class="template">
-
-<h3>📄 Templates</h3>
-
-<p>
-${templates.length}
-gespeicherte Vorlagen.
-</p>
-
-<button
-onclick="showPlusTool('templates')">
-
-Öffnen
-
-</button>
-
-</div>
-
-
-<div class="template">
-
-<h3>📊 Advanced Stats</h3>
-
-<p>
-Deine Lernstatistik auf einen Blick.
-</p>
-
-<button
-onclick="showPlusTool('advanced')">
-
-Öffnen
-
-</button>
-
-</div>
-
-
-<div class="template">
-
-<h3>✨ StudyHub Progress</h3>
-
-<p>
-Weiterlernen und Schritt für Schritt Fortschritte machen.
-</p>
 
 </div>
 
@@ -2254,305 +1415,2991 @@ Weiterlernen und Schritt für Schritt Fortschritte machen.
 
 `;
 
-}
-
-
-/* =========================
-   PLUS NAVIGATION
-========================= */
-
-function openPlusTool(type){
-
-let container =
-document.getElementById("plusTools");
-
-container.classList.remove("hidden");
-
-if(type==="exam"){
-
-container.innerHTML=
-`<div id="examPlannerArea"></div>`;
-
-renderExamPlanner();
-
-}
-
-if(type==="templates"){
-
-container.innerHTML=
-`<div id="templatesArea"></div>`;
-
-renderTemplates();
-
-}
-
-if(type==="advanced"){
-
-container.innerHTML=
-`<div id="advancedStatsArea"></div>`;
-
-renderAdvancedStats();
-
-}
-
-if(type==="bundle"){
-
-container.innerHTML=
-`<div id="bundleArea"></div>`;
-
-renderBundle();
-
-}
-
-container.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-
-function showPlusTool(type){
-
-openPlusTool(type);
-
-}
-
-
-/* =========================
-   TIMER
-========================= */
-
-let timerSeconds=1500;
-
-let timerInterval=null;
-
-
-function updateTimer(){
-
-let minutes =
-Math.floor(timerSeconds/60);
-
-let seconds =
-timerSeconds%60;
-
-document.getElementById(
-"timerDisplay"
-).textContent =
-String(minutes).padStart(2,"0")
-+":"
-+String(seconds).padStart(2,"0");
+  updateTimerDisplay();
 
 }
 
 
 function startTimer(){
 
-if(timerInterval) return;
+  if(timer.running)
+    return;
 
-timerInterval =
-setInterval(()=>{
+  timer.running=true;
 
-timerSeconds--;
+  timer.interval=
+    setInterval(()=>{
 
-if(timerSeconds<=0){
+      timer.seconds--;
 
-clearInterval(timerInterval);
+      updateTimerDisplay();
 
-timerInterval=null;
+      if(timer.seconds<=0){
 
-totalMinutes +=25;
+        pauseTimer();
 
-saveAll();
+        if(timer.mode==="focus"){
 
-alert(
-"🎉 25 Minuten geschafft!"
-);
+          db.minutes+=25;
 
-timerSeconds=1500;
+          updateStreak();
 
-}
+          saveDatabase();
 
-updateTimer();
+          toast(
+            "🎉 Fokusblock geschafft!"
+          );
 
-},1000);
+          timer.mode="break";
+          timer.seconds=300;
+
+        }else{
+
+          toast(
+            "☀️ Pause vorbei!"
+          );
+
+          timer.mode="focus";
+          timer.seconds=1500;
+
+        }
+
+        updateTimerDisplay();
+
+      }
+
+    },1000);
 
 }
 
 
 function pauseTimer(){
 
-clearInterval(timerInterval);
+  timer.running=false;
 
-timerInterval=null;
+  clearInterval(timer.interval);
 
 }
 
 
 function resetTimer(){
 
-pauseTimer();
+  pauseTimer();
 
-timerSeconds=1500;
+  timer.mode="focus";
 
-updateTimer();
+  timer.seconds=1500;
+
+  updateTimerDisplay();
 
 }
 
 
-/* =========================
+function updateTimerDisplay(){
+
+  const clock=
+    document.getElementById(
+      "timerClock"
+    );
+
+  const label=
+    document.getElementById(
+      "timerLabel"
+    );
+
+  if(!clock)
+    return;
+
+  const minutes=
+    Math.floor(timer.seconds/60);
+
+  const seconds=
+    timer.seconds%60;
+
+  clock.textContent=
+    String(minutes).padStart(2,"0")+
+    ":"+
+    String(seconds).padStart(2,"0");
+
+  label.textContent=
+    timer.mode==="focus"
+      ?"Fokus"
+      :"Pause";
+
+}
+
+
+function updateStreak(){
+
+  const now=today();
+
+  if(db.lastStudy!==now){
+
+    db.streak++;
+
+    db.lastStudy=now;
+
+  }
+
+}
+
+
+/* =========================================================
+   TASKS
+   ========================================================= */
+
+function renderTasks(){
+
+  document.getElementById("app").innerHTML=`
+
+<div class="card">
+
+<h2>✅ Aufgaben</h2>
+
+<div class="formgrid">
+
+<input
+id="taskName"
+placeholder="Aufgabe"
+/>
+
+<input
+id="taskSubject"
+placeholder="Fach"
+/>
+
+<input
+id="taskDate"
+type="date"
+/>
+
+<input
+id="taskMinutes"
+type="number"
+placeholder="Minuten"
+/>
+
+<button
+class="primary"
+onclick="addTask()"
+>
+➕ Aufgabe hinzufügen
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Meine Aufgaben</h2>
+
+<div class="list">
+
+${
+db.tasks.length
+?
+db.tasks.map(
+(task,index)=>`
+
+<div class="item">
+
+<div class="spread">
+
+<div>
+
+<label>
+
+<input
+type="checkbox"
+${task.done?"checked":""}
+onchange="toggleTask(${index})"
+style="width:auto"
+>
+
+<b
+class="${task.done?"muted":""}"
+>
+${esc(task.name)}
+</b>
+
+</label>
+
+<div class="small muted">
+
+${esc(task.subject||"Ohne Fach")}
+
+${task.date
+?" · "+dateDE(task.date)
+:""}
+
+${task.minutes
+?" · "+task.minutes+" min"
+:""}
+
+</div>
+
+</div>
+
+<button
+class="danger"
+onclick="deleteTask(${index})"
+>
+×
+</button>
+
+</div>
+
+</div>
+
+`
+).join("")
+:
+`<p class="muted">
+Noch keine Aufgaben.
+</p>`
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function addTask(){
+
+  const name=
+    document.getElementById("taskName")
+    .value.trim();
+
+  if(!name){
+
+    toast("Aufgabe eingeben.");
+
+    return;
+
+  }
+
+  db.tasks.push({
+
+    name,
+
+    subject:
+      document.getElementById(
+        "taskSubject"
+      ).value,
+
+    date:
+      document.getElementById(
+        "taskDate"
+      ).value,
+
+    minutes:
+      +document.getElementById(
+        "taskMinutes"
+      ).value||25,
+
+    done:false
+
+  });
+
+  saveDatabase();
+
+  renderTasks();
+
+}
+
+
+function toggleTask(index){
+
+  db.tasks[index].done=
+    !db.tasks[index].done;
+
+  saveDatabase();
+
+  renderTasks();
+
+}
+
+
+function deleteTask(index){
+
+  db.tasks.splice(index,1);
+
+  saveDatabase();
+
+  renderTasks();
+
+}
+
+
+/* =========================================================
+   EXAM PLANNER
+   ========================================================= */
+
+function renderExams(){
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>🎓 Exam Planner</h1>
+
+<p>
+Prüfung → Themen → Lernplan → Fortschritt →
+Prüfungsbereitschaft.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<h2>Neue Prüfung</h2>
+
+<div class="formgrid">
+
+<input
+id="examName"
+placeholder="z.B. Mathematikarbeit"
+/>
+
+<input
+id="examDate"
+type="date"
+/>
+
+<input
+id="examTopics"
+placeholder="Themen, mit Komma trennen"
+/>
+
+<input
+id="examGoal"
+placeholder="Ziel z.B. Note 2"
+/>
+
+<button
+class="primary"
+onclick="addExam()"
+>
+🎓 Prüfung anlegen
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list">
+
+${
+db.exams.length
+?
+db.exams.map(
+(exam,index)=>{
+
+  const days=
+    daysUntil(exam.date);
+
+  return `
+
+<div class="card">
+
+<div class="spread">
+
+<div>
+
+<span class="pill">
+
+${
+days<0
+?"Vorbei"
+:
+days===0
+?"Heute!"
+:
+days+" Tage"
+}
+
+</span>
+
+<h2>
+${esc(exam.name)}
+</h2>
+
+<p class="muted">
+${dateDE(exam.date)}
+· Ziel:
+${esc(exam.goal||"—")}
+</p>
+
+</div>
+
+<button
+class="danger"
+onclick="deleteExam(${index})"
+>
+Löschen
+</button>
+
+</div>
+
+
+<p>
+
+<b>Themen:</b>
+
+${esc(
+  exam.topics||
+  "Noch keine Themen"
+)}
+
+</p>
+
+
+<div class="spread">
+
+<b>
+Fortschritt
+${exam.progress}%
+</b>
+
+<b>
+${readinessLabel(exam.progress)}
+</b>
+
+</div>
+
+
+<div class="progress">
+
+<span
+style="width:${exam.progress}%"
+></span>
+
+</div>
+
+
+<input
+type="range"
+min="0"
+max="100"
+value="${exam.progress}"
+style="margin-top:10px"
+oninput="
+updateExamProgress(
+${index},
+this.value
+)
+"
+/>
+
+
+<div class="row"
+style="margin-top:12px">
+
+<button
+class="primary"
+onclick="createExamPlan(${index})"
+>
+✨ Lernplan erstellen
+</button>
+
+<button
+onclick="examMap(${index})"
+>
+🗺️ Exam Map
+</button>
+
+<button
+onclick="examReadiness(${index})"
+>
+🎯 Readiness
+</button>
+
+</div>
+
+
+<div
+id="examExtra${index}"
+style="margin-top:12px"
+></div>
+
+</div>
+
+`;
+
+}).join("")
+:
+`<div class="card center">
+<h3>Noch keine Prüfungen</h3>
+<p class="muted">
+Lege deine erste Prüfung an.
+</p>
+</div>`
+}
+
+</div>
+
+`;
+
+}
+
+
+function readinessLabel(progress){
+
+  if(progress>=85)
+    return "🟢 sehr gut";
+
+  if(progress>=65)
+    return "🟡 fast bereit";
+
+  return "🔴 weiterlernen";
+
+}
+
+
+function addExam(){
+
+  const name=
+    document.getElementById(
+      "examName"
+    ).value.trim();
+
+  const date=
+    document.getElementById(
+      "examDate"
+    ).value;
+
+  if(!name||!date){
+
+    toast(
+      "Name und Datum fehlen."
+    );
+
+    return;
+
+  }
+
+  db.exams.push({
+
+    name,
+
+    date,
+
+    topics:
+      document.getElementById(
+        "examTopics"
+      ).value,
+
+    goal:
+      document.getElementById(
+        "examGoal"
+      ).value,
+
+    progress:0
+
+  });
+
+  saveDatabase();
+
+  renderExams();
+
+  toast("Prüfung angelegt.");
+
+}
+
+
+function deleteExam(index){
+
+  db.exams.splice(index,1);
+
+  saveDatabase();
+
+  renderExams();
+
+}
+
+
+function updateExamProgress(index,value){
+
+  db.exams[index].progress=
+    +value;
+
+  saveDatabase();
+
+  const card=
+    document
+      .querySelectorAll(".card")[index+2];
+
+}
+
+
+function createExamPlan(index){
+
+  const exam=db.exams[index];
+
+  const days=
+    Math.max(
+      1,
+      daysUntil(exam.date)
+    );
+
+  const topics=
+    (exam.topics||
+      "Grundlagen,schwierige Themen,Übungen,Wiederholung"
+    )
+    .split(",")
+    .map(x=>x.trim())
+    .filter(Boolean);
+
+  topics.forEach(
+    (topic,i)=>{
+
+      const day=
+        Math.min(
+          i,
+          days-1
+        );
+
+      const date=
+        new Date(
+          Date.now()+
+          day*86400000
+        )
+        .toISOString()
+        .slice(0,10);
+
+      db.tasks.push({
+
+        name:
+          `${exam.name}: ${topic}`,
+
+        subject:"Prüfung",
+
+        date,
+
+        minutes:25,
+
+        done:false
+
+      });
+
+    }
+  );
+
+  saveDatabase();
+
+  toast(
+    "✨ Lernplan erstellt!"
+  );
+
+  showPage("tasks");
+
+}
+
+
+function examMap(index){
+
+  const exam=db.exams[index];
+
+  const topics=
+    (exam.topics||
+      "Grundlagen,Übungen,Wiederholung"
+    )
+    .split(",")
+    .map(x=>x.trim())
+    .filter(Boolean);
+
+  const box=
+    document.getElementById(
+      "examExtra"+index
+    );
+
+  box.innerHTML=`
+
+<div class="notice">
+
+<h3>
+🗺️ Deine Exam Map
+</h3>
+
+${topics.map(
+(topic,i)=>`
+
+<div class="item"
+style="margin-top:8px">
+
+<div class="spread">
+
+<b>
+${i+1}. ${esc(topic)}
+</b>
+
+<span>
+${
+i===0
+?"🔴 Start"
+:
+i===topics.length-1
+?"🎯 Wiederholen"
+:"🟡 Üben"
+}
+</span>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+`;
+
+}
+
+
+function examReadiness(index){
+
+  const exam=db.exams[index];
+
+  const progress=exam.progress;
+
+  const mistakes=
+    db.mistakes.length;
+
+  let score=
+    progress-
+    Math.min(
+      20,
+      mistakes*3
+    );
+
+  score=
+    Math.max(
+      0,
+      Math.min(100,score)
+    );
+
+  const box=
+    document.getElementById(
+      "examExtra"+index
+    );
+
+  box.innerHTML=`
+
+<div class="notice">
+
+<h3>
+🎯 Exam Readiness
+</h3>
+
+<div class="score">
+${Math.round(score)}%
+</div>
+
+<p>
+
+${
+score>=85
+?
+"🟢 Du bist schon ziemlich gut vorbereitet."
+:
+score>=65
+?
+"🟡 Du bist auf einem guten Weg, solltest aber noch gezielt üben."
+:
+"🔴 Konzentriere dich zuerst auf deine wichtigsten Wissenslücken."
+}
+
+</p>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   LERNMATERIAL
+   ========================================================= */
+
+function renderMaterials(){
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>🧠 Lernmaterial → Lernmaterial</h1>
+
+<p>
+Füge deine Mitschrift oder deinen Lerntext ein.
+StudyHub macht daraus automatisch eine
+Lernstruktur.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<textarea
+id="materialText"
+placeholder="
+Füge hier deine Mitschrift,
+Arbeitsblatt-Texte oder Lernnotizen ein...
+"
+></textarea>
+
+
+<div class="row"
+style="margin-top:10px">
+
+<button
+class="primary"
+onclick="generateLearningMaterial()"
+>
+🧠 Lernmaterial erstellen
+</button>
+
+<label>
+
+<input
+type="file"
+id="textFile"
+accept=".txt,.md,.csv"
+onchange="loadTextFile(this)"
+style="width:auto"
+>
+
+Textdatei laden
+
+</label>
+
+</div>
+
+</div>
+
+
+<div id="materialResult"></div>
+
+
+<div class="card">
+
+<h3>📸 Foto / PDF</h3>
+
+<p class="muted">
+
+Die aktuelle Browser-Version verarbeitet
+direkt eingefügten Text. Eine echte Foto-/PDF-
+Erkennung mit KI wird anschließend über einen
+sicheren KI-Service angebunden.
+
+</p>
+
+</div>
+
+`;
+
+}
+
+
+function loadTextFile(input){
+
+  const file=input.files[0];
+
+  if(!file)
+    return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(){
+
+    document.getElementById(
+      "materialText"
+    ).value=
+      reader.result;
+
+  };
+
+  reader.readAsText(file);
+
+}
+
+
+function generateLearningMaterial(){
+
+  const text=
+    document.getElementById(
+      "materialText"
+    ).value.trim();
+
+  if(text.length<50){
+
+    toast(
+      "Bitte etwas mehr Lernstoff einfügen."
+    );
+
+    return;
+
+  }
+
+  const sentences=
+    text
+      .split(/(?<=[.!?])\s+/)
+      .map(x=>x.trim())
+      .filter(
+        x=>x.length>20
+      );
+
+  const words=
+    text
+      .toLowerCase()
+      .replace(
+        /[^a-zA-ZäöüÄÖÜß0-9\s]/g,
+        ""
+      )
+      .split(/\s+/)
+      .filter(
+        x=>x.length>6
+      );
+
+  const keywords=
+    [...new Set(words)]
+    .slice(0,12);
+
+
+  const summary=
+    sentences
+      .slice(0,7)
+      .map(
+        sentence=>
+          "• "+esc(sentence)
+      )
+      .join("<br>");
+
+
+  const questions=
+    sentences
+      .slice(0,6)
+      .map(
+        (sentence,index)=>`
+
+<div class="item">
+
+<b>
+Frage ${index+1}
+</b>
+
+<p>
+Erkläre den wichtigsten
+Gedanken aus diesem Abschnitt:
+</p>
+
+<p class="muted">
+${esc(sentence)}
+</p>
+
+</div>
+
+`
+      )
+      .join("");
+
+
+  const flashcards=
+    keywords
+      .slice(0,10)
+      .map(
+        (keyword,index)=>`
+
+<div class="item">
+
+<b>
+Karte ${index+1}
+</b>
+
+<p>
+Was bedeutet bzw. warum ist
+<b>${esc(keyword)}</b>
+wichtig?
+</p>
+
+<p class="muted">
+Formuliere die Antwort selbst,
+bevor du sie nachschlägst.
+</p>
+
+</div>
+
+`
+      )
+      .join("");
+
+
+  document.getElementById(
+    "materialResult"
+  ).innerHTML=`
+
+<div class="grid2">
+
+<div class="card">
+
+<h2>📝 Zusammenfassung</h2>
+
+<p>
+${summary}
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎯 Schlüsselbegriffe</h2>
+
+${keywords
+  .map(
+    x=>`
+<span class="tag">
+${esc(x)}
+</span>
+`
+  ).join("")}
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🧠 Lernkarten</h2>
+
+<div class="list">
+
+${flashcards}
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>❓ Prüfungsfragen</h2>
+
+<div class="list">
+
+${questions}
+
+</div>
+
+</div>
+
+`;
+
+
+  db.materials.push({
+
+    date:today(),
+
+    text:text.slice(0,1000)
+
+  });
+
+  saveDatabase();
+
+}
+
+
+/* =========================================================
+   SMART STUDY
+   ========================================================= */
+
+function renderSmartStudy(){
+
+  const nextExam=
+    [...db.exams]
+      .filter(
+        exam=>
+          daysUntil(exam.date)>=0
+      )
+      .sort(
+        (a,b)=>
+          daysUntil(a.date)-
+          daysUntil(b.date)
+      )[0];
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>🤖 Smart Study</h1>
+
+<p>
+Du musst nicht selbst entscheiden,
+womit du anfangen sollst.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<h2>
+⏰ Wie viel Zeit hast du?
+</h2>
+
+<p class="muted">
+StudyHub sucht die sinnvollsten offenen
+Aufgaben für diese Zeit.
+</p>
+
+<div class="row">
+
+${[15,20,30,45,60,90,120]
+.map(
+minutes=>`
+
+<button
+onclick="createSmartDay(${minutes})"
+>
+${minutes} min
+</button>
+
+`
+).join("")}
+
+</div>
+
+<div
+id="smartResult"
+style="margin-top:15px"
+></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+🚨 Panik-Modus
+</h2>
+
+<p class="muted">
+Prüfung bald und kaum vorbereitet?
+StudyHub macht einen Notfallplan.
+</p>
+
+${
+nextExam
+?
+`
+
+<button
+class="danger"
+onclick="panicMode(${db.exams.indexOf(nextExam)})"
+>
+🚨 ${esc(nextExam.name)} retten
+</button>
+
+`
+:
+`<p class="muted">
+Lege zuerst eine Prüfung an.
+</p>`
+}
+
+</div>
+
+
+<div class="card">
+
+<h2>
+🧠 Smart Study Prinzip
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+<div class="icon">1️⃣</div>
+<div>
+<b>Priorität</b>
+<p class="muted">
+Prüfungen und dringende Aufgaben
+kommen zuerst.
+</p>
+</div>
+</div>
+
+<div class="feature">
+<div class="icon">2️⃣</div>
+<div>
+<b>Zeit</b>
+<p class="muted">
+Dein Plan passt sich deiner verfügbaren
+Zeit an.
+</p>
+</div>
+</div>
+
+<div class="feature">
+<div class="icon">3️⃣</div>
+<div>
+<b>Wissenslücken</b>
+<p class="muted">
+Schwierige Themen werden priorisiert.
+</p>
+</div>
+</div>
+
+<div class="feature">
+<div class="icon">4️⃣</div>
+<div>
+<b>Start</b>
+<p class="muted">
+Du bekommst eine konkrete nächste Aufgabe.
+</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function createSmartDay(minutes){
+
+  let tasks=
+    db.tasks
+      .filter(t=>!t.done)
+      .map(t=>{
+
+        let score=0;
+
+        if(t.date){
+
+          const days=
+            daysUntil(t.date);
+
+          if(days<=0)
+            score+=100;
+
+          else
+            score+=
+              Math.max(
+                0,
+                50-days*3
+              );
+
+        }
+
+        if(t.minutes<=minutes)
+          score+=20;
+
+        return {
+          task:t,
+          score
+        };
+
+      })
+      .sort(
+        (a,b)=>
+          b.score-a.score
+      );
+
+
+  let selected=[];
+  let remaining=minutes;
+
+
+  for(const item of tasks){
+
+    const task=item.task;
+
+    const taskMinutes=
+      task.minutes||25;
+
+    if(
+      taskMinutes<=remaining
+    ){
+
+      selected.push(task);
+
+      remaining-=taskMinutes;
+
+    }
+
+  }
+
+
+  if(
+    !selected.length &&
+    tasks.length
+  ){
+
+    selected=[
+      tasks[0].task
+    ];
+
+  }
+
+
+  const result=
+    document.getElementById(
+      "smartResult"
+    );
+
+
+  if(!selected.length){
+
+    result.innerHTML=`
+
+<div class="notice success">
+
+🎉 Du hast keine offenen Aufgaben.
+
+Vielleicht ist heute ein guter Tag
+für Wiederholungen oder Wissenslücken.
+
+</div>
+
+`;
+
+    return;
+
+  }
+
+
+  result.innerHTML=`
+
+<div class="notice">
+
+<h3>
+🎯 Dein ${minutes}-Minuten-Plan
+</h3>
+
+<ol>
+
+${selected.map(
+task=>`
+
+<li>
+
+<b>
+${esc(task.name)}
+</b>
+
+<span class="muted">
+(${task.minutes||25} min)
+</span>
+
+</li>
+
+`
+).join("")}
+
+</ol>
+
+
+<button
+class="primary"
+onclick="showPage('tasks')"
+>
+▶ Jetzt starten
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function panicMode(index){
+
+  const exam=db.exams[index];
+
+  const days=
+    Math.max(
+      1,
+      daysUntil(exam.date)
+    );
+
+  const topics=
+    (exam.topics||
+      "Grundlagen,schwierige Themen,Übungen,Prüfungssimulation"
+    )
+    .split(",")
+    .map(x=>x.trim())
+    .filter(Boolean);
+
+
+  const count=
+    Math.min(
+      days,
+      7
+    );
+
+
+  document.getElementById(
+    "smartResult"
+  ).innerHTML=`
+
+<div class="notice warning">
+
+<h2>
+🚨 Notfallplan
+</h2>
+
+<p>
+
+<b>
+${esc(exam.name)}
+</b>
+ist in
+<b>${days} Tagen</b>.
+
+</p>
+
+
+<ol>
+
+${Array.from(
+  {length:count},
+  (_,index)=>`
+
+<li>
+
+<b>
+Tag ${index+1}:
+</b>
+
+${esc(
+  topics[index%topics.length]
+)}
+
+<br>
+
+<span class="muted">
+
+25–45 Minuten lernen →
+5 Selbsttest-Fragen →
+Fehler markieren
+
+</span>
+
+</li>
+
+`
+).join("")}
+
+</ol>
+
+<button
+class="primary"
+onclick="createExamPlan(${index})"
+>
+✨ Aufgaben daraus erstellen
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   PRÜFUNGSSIMULATOR
+   ========================================================= */
+
+let simulationQuestions=[];
+
+
+function renderSimulator(){
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>
+🧪 Prüfungssimulator
+</h1>
+
+<p>
+Teste dich selbst, bevor die echte Prüfung kommt.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<div class="formgrid">
+
+<input
+id="simulationSubject"
+placeholder="Fach"
+/>
+
+<input
+id="simulationTopic"
+placeholder="Thema"
+/>
+
+<input
+id="simulationCount"
+type="number"
+min="3"
+max="15"
+value="5"
+placeholder="Anzahl Fragen"
+/>
+
+<select id="simulationLevel">
+
+<option>Grundlagen</option>
+<option>Mittel</option>
+<option>Schwer</option>
+
+</select>
+
+</div>
+
+
+<button
+class="primary"
+style="margin-top:10px"
+onclick="startSimulation()"
+>
+🧪 Prüfung starten
+</button>
+
+</div>
+
+
+<div id="simulationResult"></div>
+
+`;
+
+}
+
+
+function startSimulation(){
+
+  const subject=
+    document.getElementById(
+      "simulationSubject"
+    ).value||"Fach";
+
+  const topic=
+    document.getElementById(
+      "simulationTopic"
+    ).value||"Thema";
+
+  const count=
+    Math.max(
+      3,
+      Math.min(
+        15,
+        +document.getElementById(
+          "simulationCount"
+        ).value||5
+      )
+    );
+
+  const level=
+    document.getElementById(
+      "simulationLevel"
+    ).value;
+
+
+  simulationQuestions=
+    Array.from(
+      {length:count},
+      (_,index)=>({
+
+        question:
+          `Frage ${index+1}: Erkläre einen wichtigen Zusammenhang aus „${topic}“ auf ${level}-Niveau.`
+
+      })
+    );
+
+
+  document.getElementById(
+    "simulationResult"
+  ).innerHTML=`
+
+<div class="card">
+
+<div class="spread">
+
+<h2>
+🧪 ${esc(subject)}
+</h2>
+
+<span class="pill">
+60 Minuten
+</span>
+
+</div>
+
+
+<p class="muted">
+
+Keine Lösungen während der Simulation.
+Beantworte jede Frage so gut du kannst.
+
+</p>
+
+
+<div class="list">
+
+${simulationQuestions.map(
+(question,index)=>`
+
+<div class="item">
+
+<b>
+${esc(question.question)}
+</b>
+
+<textarea
+class="simulationAnswer"
+data-index="${index}"
+placeholder="Deine Antwort..."
+style="margin-top:10px"
+></textarea>
+
+</div>
+
+`
+).join("")}
+
+</div>
+
+
+<button
+class="primary"
+onclick="finishSimulation(${count})"
+>
+📤 Prüfung abgeben
+</button>
+
+
+<div
+id="simulationScore"
+></div>
+
+</div>
+
+`;
+
+}
+
+
+function finishSimulation(count){
+
+  const answers=
+    [
+      ...document.querySelectorAll(
+        ".simulationAnswer"
+      )
+    ];
+
+  const answered=
+    answers.filter(
+      answer=>
+        answer.value.trim().length>20
+    ).length;
+
+
+  const score=
+    Math.round(
+      answered/count*100
+    );
+
+
+  db.sessions.push({
+
+    date:today(),
+
+    type:"Prüfungssimulation",
+
+    score
+
+  });
+
+
+  saveDatabase();
+
+
+  document.getElementById(
+    "simulationScore"
+  ).innerHTML=`
+
+<div
+class="notice"
+style="margin-top:15px"
+>
+
+<div class="score">
+${score}%
+</div>
+
+<h3>
+
+${
+score>=85
+?
+"🟢 Sehr guter Stand"
+:
+score>=65
+?
+"🟡 Noch gezielt üben"
+:
+"🔴 Grundlagen wiederholen"
+}
+
+</h3>
+
+<p>
+
+Du hast
+<b>${answered}</b>
+von
+<b>${count}</b>
+Fragen ausführlich beantwortet.
+
+</p>
+
+<p class="muted">
+
+Die lokale Version bewertet zunächst
+die Vollständigkeit der Antworten.
+Eine echte fachliche KI-Korrektur kann
+später sicher angebunden werden.
+
+</p>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   WISSENSLÜCKEN
+   ========================================================= */
+
+function renderGaps(){
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>
+🧩 Wissenslücken
+</h1>
+
+<p>
+Nicht nur wissen, wie viele Punkte du hast —
+sondern wissen, WAS dir noch fehlt.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<div class="formgrid">
+
+<input
+id="gapTopic"
+placeholder="z.B. Quadratische Funktionen"
+/>
+
+<select id="gapLevel">
+
+<option>🔴 schwierig</option>
+<option>🟡 unsicher</option>
+<option>🟢 fast sicher</option>
+
+</select>
+
+<button
+class="primary"
+onclick="addGap()"
+>
+➕ Wissenslücke speichern
+</button>
+
+</div>
+
+</div>
+
+
+<div class="list">
+
+${
+db.mistakes.length
+?
+db.mistakes.map(
+(gap,index)=>`
+
+<div class="item">
+
+<div class="spread">
+
+<div>
+
+<b>
+${esc(gap.topic)}
+</b>
+
+<div class="small muted">
+${esc(gap.level)}
+</div>
+
+</div>
+
+<button
+class="danger"
+onclick="deleteGap(${index})"
+>
+×
+</button>
+
+</div>
+
+</div>
+
+`
+).join("")
+:
+`<div class="card">
+<p class="muted">
+Noch keine Wissenslücken gespeichert.
+</p>
+</div>`
+}
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🎯 Was solltest du zuerst lernen?
+</h3>
+
+${
+db.mistakes.length
+?
+`<p>
+Dein erster Fokus sollte sein:
+<b>
+${esc(
+db.mistakes[0].topic
+)}
+</b>
+</p>`
+:
+`<p class="muted">
+Sobald du schwierige Themen sammelst,
+erscheinen sie hier.
+</p>`
+}
+
+</div>
+
+`;
+
+}
+
+
+function addGap(){
+
+  const topic=
+    document.getElementById(
+      "gapTopic"
+    ).value.trim();
+
+  if(!topic){
+
+    toast("Thema eingeben.");
+
+    return;
+
+  }
+
+  db.mistakes.push({
+
+    topic,
+
+    level:
+      document.getElementById(
+        "gapLevel"
+      ).value
+
+  });
+
+  saveDatabase();
+
+  renderGaps();
+
+  toast("Wissenslücke gespeichert.");
+
+}
+
+
+function deleteGap(index){
+
+  db.mistakes.splice(index,1);
+
+  saveDatabase();
+
+  renderGaps();
+
+}
+
+
+/* =========================================================
+   BRAIN DUMP
+   ========================================================= */
+
+function renderBrainDump(){
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>
+🧹 Brain Dump
+</h1>
+
+<p>
+Alles aus deinem Kopf raus.
+StudyHub macht daraus Struktur.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<textarea
+id="brainText"
+placeholder="
+Schreib einfach alles ungeordnet hinein:
+
+Mathe lernen, Bio Referat,
+Englisch Vokabeln,
+Deutsch Hausaufgabe morgen,
+Präsentation fertig machen...
+"
+>${esc(db.brainDump)}</textarea>
+
+
+<button
+class="primary"
+style="margin-top:10px"
+onclick="convertBrainDump()"
+>
+✨ In Aufgaben umwandeln
+</button>
+
+
+<div
+id="brainResult"
+style="margin-top:12px"
+></div>
+
+</div>
+
+`;
+
+}
+
+
+function convertBrainDump(){
+
+  const text=
+    document.getElementById(
+      "brainText"
+    ).value.trim();
+
+  if(!text){
+
+    toast("Schreib zuerst etwas hinein.");
+
+    return;
+
+  }
+
+  db.brainDump=text;
+
+
+  const pieces=
+    text
+      .split(
+        /\n|,|;|(?<=[.!?])\s+/
+      )
+      .map(
+        x=>x.trim()
+      )
+      .filter(
+        x=>x.length>2
+      );
+
+
+  let added=0;
+
+
+  pieces.forEach(piece=>{
+
+    const clean=
+      piece
+        .replace(
+          /^(ich muss|muss|noch|ich sollte)\s+/i,
+          ""
+        )
+        .replace(
+          /[.!?]+$/,
+          ""
+        );
+
+
+    if(
+      clean &&
+      !db.tasks.some(
+        task=>
+          task.name.toLowerCase()===
+          clean.toLowerCase()
+      )
+    ){
+
+      db.tasks.push({
+
+        name:clean,
+
+        subject:"",
+
+        date:"",
+
+        minutes:25,
+
+        done:false
+
+      });
+
+      added++;
+
+    }
+
+  });
+
+
+  saveDatabase();
+
+
+  document.getElementById(
+    "brainResult"
+  ).innerHTML=`
+
+<div class="notice success">
+
+✅
+<b>${added}</b>
+Aufgaben wurden erstellt.
+
+<button
+onclick="showPage('tasks')"
+>
+Aufgaben öffnen
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   WIEDERHOLUNGEN
+   ========================================================= */
+
+function renderReview(){
+
+  const now=
+    Date.now();
+
+  const due=
+    db.reviews.filter(
+      review=>
+        new Date(review.next).getTime()<=now
+    );
+
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>
+🔁 Vergessens-Radar
+</h1>
+
+<p>
+Plane Wiederholungen und behalte
+wichtige Themen langfristig.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<div class="formgrid">
+
+<input
+id="reviewTopic"
+placeholder="Thema"
+/>
+
+<select id="reviewDays">
+
+<option value="1">
+morgen
+</option>
+
+<option value="3">
+in 3 Tagen
+</option>
+
+<option value="7">
+in 1 Woche
+</option>
+
+<option value="14">
+in 2 Wochen
+</option>
+
+<option value="30">
+in 1 Monat
+</option>
+
+</select>
+
+<button
+class="primary"
+onclick="addReview()"
+>
+🔁 Wiederholung planen
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Heute fällig:
+${due.length}
+</h2>
+
+
+<div class="list">
+
+${
+due.length
+?
+due.map(
+review=>{
+
+const index=
+db.reviews.indexOf(review);
+
+return `
+
+<div class="item">
+
+<div class="spread">
+
+<b>
+${esc(review.topic)}
+</b>
+
+<span class="pill">
+Jetzt
+</span>
+
+</div>
+
+
+<div
+class="row"
+style="margin-top:10px"
+>
+
+<button
+class="good"
+onclick="completeReview(${index})"
+>
+✓ Kann ich
+</button>
+
+<button
+class="warn"
+onclick="delayReview(${index})"
+>
+↻ Noch unsicher
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("")
+:
+`<p class="muted">
+Heute nichts fällig 🎉
+</p>`
+}
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+📅 Kommende Wiederholungen
+</h2>
+
+<div class="list">
+
+${
+db.reviews
+.filter(
+r=>
+new Date(r.next).getTime()>now
+)
+.map(
+r=>`
+
+<div class="item">
+
+<b>
+${esc(r.topic)}
+</b>
+
+<div class="small muted">
+
+${new Date(r.next)
+.toLocaleDateString("de-DE")}
+
+</div>
+
+</div>
+
+`
+).join("")
+||
+`<p class="muted">
+Keine geplanten Wiederholungen.
+</p>`
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function addReview(){
+
+  const topic=
+    document.getElementById(
+      "reviewTopic"
+    ).value.trim();
+
+  const days=
+    +document.getElementById(
+      "reviewDays"
+    ).value;
+
+
+  if(!topic){
+
+    toast("Thema eingeben.");
+
+    return;
+
+  }
+
+
+  db.reviews.push({
+
+    topic,
+
+    next:
+      new Date(
+        Date.now()+
+        days*86400000
+      ).toISOString()
+
+  });
+
+
+  saveDatabase();
+
+  renderReview();
+
+}
+
+
+function completeReview(index){
+
+  db.reviews.splice(index,1);
+
+  db.minutes+=5;
+
+  saveDatabase();
+
+  renderReview();
+
+  toast(
+    "🎉 Wiederholung erledigt."
+  );
+
+}
+
+
+function delayReview(index){
+
+  db.reviews[index].next=
+    new Date(
+      Date.now()+
+      3*86400000
+    ).toISOString();
+
+  saveDatabase();
+
+  renderReview();
+
+}
+
+
+/* =========================================================
+   ADVANCED STATS
+   ========================================================= */
+
+function renderStats(){
+
+  const totalTasks=
+    db.tasks.length;
+
+  const completed=
+    db.tasks.filter(
+      t=>t.done
+    ).length;
+
+  const completion=
+    totalTasks
+      ?
+      Math.round(
+        completed/
+        totalTasks*
+        100
+      )
+      :
+      0;
+
+  const examAverage=
+    db.exams.length
+      ?
+      Math.round(
+        average(
+          db.exams.map(
+            e=>e.progress
+          )
+        )
+      )
+      :
+      0;
+
+  const simulationAverage=
+    db.sessions.length
+      ?
+      Math.round(
+        average(
+          db.sessions.map(
+            s=>s.score
+          )
+        )
+      )
+      :
+      0;
+
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card">
+
+<h2>
+📊 Advanced Stats
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="label">
+Lernzeit
+</div>
+
+<div class="kpi">
+${db.minutes} min
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="label">
+Aufgabenquote
+</div>
+
+<div class="kpi">
+${completion}%
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="label">
+Prüfungsfortschritt
+</div>
+
+<div class="kpi">
+${examAverage}%
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="label">
+Simulator
+</div>
+
+<div class="kpi">
+${simulationAverage}%
+</div>
+
+</div>
+
+</div>
+
+
+<h3>
+✅ Aufgaben
+</h3>
+
+<div class="progress">
+
+<span
+style="width:${completion}%"
+></span>
+
+</div>
+
+<p class="muted">
+${completed}
+von
+${totalTasks}
+Aufgaben erledigt.
+</p>
+
+
+<h3>
+🎓 Prüfungsfortschritt
+</h3>
+
+<div class="progress">
+
+<span
+style="width:${examAverage}%"
+></span>
+
+</div>
+
+
+<h3>
+🧩 Wissenslücken
+</h3>
+
+<p>
+${db.mistakes.length}
+Themen gespeichert.
+</p>
+
+
+<h3>
+🔁 Wiederholungen
+</h3>
+
+<p>
+${db.reviews.length}
+Wiederholungen geplant.
+</p>
+
+</section>
+
+
+<div class="card">
+
+<h2>
+🎓 Prüfungen
+</h2>
+
+<div class="list">
+
+${
+db.exams.map(
+exam=>`
+
+<div class="item">
+
+<div class="spread">
+
+<b>
+${esc(exam.name)}
+</b>
+
+<b>
+${exam.progress}%
+</b>
+
+</div>
+
+<div
+class="progress"
+style="margin-top:8px"
+>
+
+<span
+style="width:${exam.progress}%"
+></span>
+
+</div>
+
+</div>
+
+`
+).join("")
+||
+`<p class="muted">
+Noch keine Prüfungen.
+</p>`
+}
+
+</div>
+
+</div>
+
+`;
+
+
+}
+
+
+/* =========================================================
+   PLUS HUB
+   ========================================================= */
+
+function renderPlus(){
+
+  const cards=[
+
+    [
+      "🤖",
+      "Smart Study",
+      "StudyHub entscheidet, was du als Nächstes lernen solltest.",
+      "smart"
+    ],
+
+    [
+      "🚨",
+      "Panik-Modus",
+      "Notfallplan für Prüfungen, die bald anstehen.",
+      "smart"
+    ],
+
+    [
+      "🧠",
+      "Material → Lernmaterial",
+      "Mitschriften in Zusammenfassung, Lernkarten und Fragen verwandeln.",
+      "materials"
+    ],
+
+    [
+      "🧪",
+      "Prüfungssimulator",
+      "Vor der echten Arbeit unter Prüfungsbedingungen testen.",
+      "simulator"
+    ],
+
+    [
+      "🧩",
+      "Wissenslücken",
+      "Schwierige Themen sichtbar machen.",
+      "gaps"
+    ],
+
+    [
+      "🧹",
+      "Brain Dump",
+      "Gedanken und To-dos automatisch in Aufgaben umwandeln.",
+      "brain"
+    ],
+
+    [
+      "🔁",
+      "Vergessens-Radar",
+      "Wiederholungen planen.",
+      "review"
+    ],
+
+    [
+      "🎓",
+      "Exam Planner",
+      "Prüfung planen und daraus Aufgaben erzeugen.",
+      "exams"
+    ],
+
+    [
+      "📊",
+      "Advanced Stats",
+      "Deinen echten Lernfortschritt sehen.",
+      "stats"
+    ],
+
+    [
+      "📚",
+      "Noten-Ziel",
+      "Berechnen, welche Note du ungefähr brauchst.",
+      "grades"
+    ]
+
+  ];
+
+
+  document.getElementById("app").innerHTML=`
+
+<section class="card hero">
+
+<h1>
+✨ StudyHub Plus
+</h1>
+
+<p>
+Nicht zehn einzelne Tools.
+Ein kompletter Lern-Workflow.
+</p>
+
+</section>
+
+
+<div class="feature-grid">
+
+${cards.map(
+card=>`
+
+<div class="feature">
+
+<div class="icon">
+${card[0]}
+</div>
+
+<div>
+
+<h3>
+${card[1]}
+</h3>
+
+<p class="muted">
+${card[2]}
+</p>
+
+<button
+class="primary"
+onclick="showPage('${card[3]}')"
+>
+Öffnen
+</button>
+
+</div>
+
+</div>
+
+`
+).join("")}
+
+</div>
+
+
+<div class="card">
+
+<h2>
+💎 Smart Study Bundle
+</h2>
+
+<p class="muted">
+
+Prüfungen, Aufgaben, Lernmaterial,
+Wissenslücken, Wiederholungen und
+Statistiken arbeiten zusammen.
+
+</p>
+
+
+<div class="notice">
+
+<b>
+Das Ziel von StudyHub:
+</b>
+
+<p>
+
+Du musst nicht mehr überlegen:
+„Was soll ich jetzt eigentlich lernen?“
+
+</p>
+
+<p>
+
+StudyHub soll dir den nächsten
+sinnvollen Schritt zeigen.
+
+</p>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
    SETTINGS
-========================= */
+   ========================================================= */
 
-function saveSettings(){
+function renderSettings(){
 
-dailyGoal =
-Number(
-document.getElementById("dailyGoal").value
-) || 30;
+  document.getElementById("app").innerHTML=`
 
-saveAll();
+<div class="card">
 
-alert(
-"Gespeichert ✨"
-);
+<h2>
+⚙️ Einstellungen
+</h2>
 
-renderAll();
+
+<label>
+
+Tagesziel in Minuten
+
+<input
+id="dailyGoal"
+type="number"
+min="1"
+value="${db.settings.dailyGoal}"
+onchange="
+db.settings.dailyGoal=
++this.value||60;
+saveDatabase();
+"
+/>
+
+</label>
+
+
+<hr>
+
+
+<div class="row">
+
+<button
+onclick="toggleDark()"
+>
+🌙 Dark Mode
+</button>
+
+
+<button
+onclick="exportData()"
+>
+📤 Daten exportieren
+</button>
+
+
+<button
+class="danger"
+onclick="resetAllData()"
+>
+🗑️ Alles zurücksetzen
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+🔒 Deine Daten
+</h2>
+
+<p class="muted">
+
+Deine Lernplan-Daten werden in dieser
+Version lokal im Browser gespeichert.
+
+</p>
+
+</div>
+
+`;
 
 }
 
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
 
 function toggleDark(){
 
-document.body.classList.toggle("dark");
+  db.settings.dark=
+    !db.settings.dark;
 
-localStorage.setItem(
-"studyhub_dark",
-document.body.classList.contains("dark")
-);
+  saveDatabase();
+
+  document.body.classList.toggle(
+    "dark",
+    db.settings.dark
+  );
 
 }
 
 
-/* =========================
+/* =========================================================
    EXPORT
-========================= */
+   ========================================================= */
 
 function exportData(){
 
-let data={
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          db,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
 
-grades:grades,
 
-tasks:tasks,
+  const url=
+    URL.createObjectURL(blob);
 
-exams:exams,
+  const link=
+    document.createElement("a");
 
-templates:templates,
+  link.href=url;
 
-totalMinutes:totalMinutes,
+  link.download=
+    "studyhub-backup.json";
 
-dailyGoal:dailyGoal
+  link.click();
 
-};
+  URL.revokeObjectURL(url);
 
-let blob =
-new Blob(
-[
-JSON.stringify(
-data,
-null,
-2
-)
-],
-{
-type:"application/json"
+  toast(
+    "Backup exportiert."
+  );
+
 }
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetAllData(){
+
+  const confirmed=
+    confirm(
+      "Wirklich alle StudyHub-Daten löschen?"
+    );
+
+  if(!confirmed)
+    return;
+
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+document.body.classList.toggle(
+  "dark",
+  db.settings.dark
 );
 
-let url =
-URL.createObjectURL(blob);
-
-let link =
-document.createElement("a");
-
-link.href=url;
-
-link.download=
-"studyhub-backup.json";
-
-link.click();
-
-URL.revokeObjectURL(url);
-
-}
-
-
-/* =========================
-   DELETE
-========================= */
-
-function deleteAll(){
-
-if(
-!confirm(
-"Wirklich alle StudyHub-Daten löschen?"
-)
-) return;
-
-localStorage.clear();
-
-location.reload();
-
-}
-
-
-/* =========================
-   RENDER ALL
-========================= */
-
-function renderAll(){
-
-renderGrades();
-
-renderTasks();
-
-renderHome();
-
-renderCalendar();
-
-renderStats();
-
-}
-
-
-/* =========================
-   INIT
-========================= */
-
-if(
-localStorage.getItem("studyhub_dark")
-==="true"
-){
-
-document.body.classList.add("dark");
-
-}
-
-document.getElementById(
-"taskDate"
-).value=today();
-
-document.getElementById(
-"calendarDate"
-).value=today();
-
-document.getElementById(
-"dailyGoal"
-).value=dailyGoal;
-
-updateTimer();
-
-renderAll();
+showPage("home");
 
 </script>
 
