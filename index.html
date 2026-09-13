@@ -5,9 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyHub – Dein smarter Lernplaner</title>
+<title>StudyHub – Kostenloser Lernplaner für Schüler</title>
 
-<meta name="description" content="StudyHub ist dein kostenloser Lernplaner mit Notenrechner, Lernplan, Pomodoro-Timer, Kalender und Lernstatistik.">
+<meta name="description" content="StudyHub ist dein kostenloser Lernplaner für Schule und Gymnasium mit Notenrechner, Pomodoro-Timer, Aufgabenplaner, automatischem Lernplan, Kalender und Lernstatistik.">
 <meta name="theme-color" content="#8064dc">
 
 <style>
@@ -73,6 +73,83 @@ nav button{
 nav button:hover{
     background:var(--primary2);
     color:white;
+}
+
+/* STUDYHUB PLUS */
+
+nav .plus-nav{
+    background:linear-gradient(135deg,#8064dc,#a58cf0);
+    color:white;
+}
+
+.plus-hero{
+    background:linear-gradient(135deg,#8064dc,#b39af7 55%,#d9cdfd);
+    color:white;
+    border-radius:26px;
+    padding:28px;
+    margin-bottom:18px;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.plus-hero:after{
+    content:"✨";
+    position:absolute;
+    right:25px;
+    top:18px;
+    font-size:58px;
+    opacity:.85;
+}
+
+.plus-hero h1{
+    margin:0 60px 8px 0;
+    font-size:30px;
+}
+
+.plus-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.plus-card{
+    position:relative;
+    overflow:hidden;
+}
+
+.plus-card:before{
+    content:"✨";
+    position:absolute;
+    right:18px;
+    top:14px;
+    font-size:30px;
+    opacity:.8;
+}
+
+.plus-icon{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.coming-soon{
+    display:inline-block;
+    background:var(--light);
+    color:var(--primary);
+    border-radius:20px;
+    padding:5px 9px;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.promo{
+    background:linear-gradient(135deg,#f2edff,#fff);
+    border:2px solid #ddd1ff;
+}
+
+body.dark .promo{
+    background:#2c273a;
 }
 
 main{
@@ -388,12 +465,19 @@ footer{
 }
 
 @media(max-width:800px){
+
     .grid{
         grid-template-columns:repeat(2,1fr);
     }
+
+    .plus-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 @media(max-width:550px){
+
     .grid,
     .form-grid{
         grid-template-columns:1fr;
@@ -410,6 +494,7 @@ footer{
     .calendar .day{
         min-height:65px;
     }
+
 }
 </style>
 </head>
@@ -417,114 +502,233 @@ footer{
 <body>
 
 <nav>
+
 <button onclick="show('home')">🏠 Home</button>
+
 <button onclick="show('grades')">📝 Noten</button>
+
 <button onclick="show('timer')">⏱️ Timer</button>
+
 <button onclick="show('planner')">📚 Planer</button>
+
 <button onclick="show('auto')">🧠 Lernplan</button>
+
 <button onclick="show('calendar')">📅 Kalender</button>
+
 <button onclick="show('stats')">📊 Statistik</button>
+
+<button class="plus-nav" onclick="show('plus')">
+✨ StudyHub Plus
+</button>
+
 <button onclick="show('settings')">⚙️ Einstellungen</button>
+
 </nav>
 
 <main>
 
 <!-- HOME -->
+
 <section id="home" class="active">
 
 <div class="hero">
+
 <h1 id="heroTitle">📚 StudyHub</h1>
-<p id="greeting">Dein smarter Lernbereich</p>
+
+<p id="greeting">
+Dein smarter Lernbereich
+</p>
+
 <p id="dateText"></p>
+
 </div>
 
 <div class="grid">
 
 <div class="card">
-<div class="small">🔥 Lernserie</div>
-<div class="stat" id="streak">0</div>
-<div class="small">Tage</div>
+
+<div class="small">
+🔥 Lernserie
 </div>
 
-<div class="card">
-<div class="small">✅ Erledigt</div>
-<div class="stat" id="completed">0</div>
-<div class="small">Aufgaben</div>
+<div class="stat" id="streak">
+0
 </div>
 
-<div class="card">
-<div class="small">⭐ Notenschnitt</div>
-<div class="stat" id="average">–</div>
-<div class="small">gewichteter Schnitt</div>
-</div>
-
-<div class="card">
-<div class="small">⏱️ Lernzeit</div>
-<div class="stat" id="minutesTotal">0</div>
-<div class="small">Minuten</div>
+<div class="small">
+Tage
 </div>
 
 </div>
 
 <div class="card">
+
+<div class="small">
+✅ Erledigt
+</div>
+
+<div class="stat" id="completed">
+0
+</div>
+
+<div class="small">
+Aufgaben
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="small">
+⭐ Notenschnitt
+</div>
+
+<div class="stat" id="average">
+–
+</div>
+
+<div class="small">
+gewichteter Schnitt
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="small">
+⏱️ Lernzeit
+</div>
+
+<div class="stat" id="minutesTotal">
+0
+</div>
+
+<div class="small">
+Minuten
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
 <h2>🎯 Heutiges Lernziel</h2>
+
 <p>
 <strong id="todayMinutes">0</strong> /
 <strong id="goal">30</strong> Minuten
 </p>
+
 <div class="progress">
 <div id="goalBar"></div>
 </div>
+
 </div>
 
 <div class="card">
+
 <h2>📌 Heute</h2>
+
 <div id="todayTasks"></div>
+
 </div>
 
 <div class="card">
+
 <h2>🚀 Schnellzugriff</h2>
-<button class="primary" onclick="show('auto')">🧠 Lernplan erstellen</button>
-<button class="secondary" onclick="show('planner')">➕ Aufgabe</button>
-<button class="secondary" onclick="show('timer')">⏱️ Lernen</button>
+
+<button class="primary" onclick="show('auto')">
+🧠 Lernplan erstellen
+</button>
+
+<button class="secondary" onclick="show('planner')">
+➕ Aufgabe
+</button>
+
+<button class="secondary" onclick="show('timer')">
+⏱️ Lernen
+</button>
+
+<button class="secondary" onclick="show('plus')">
+✨ StudyHub Plus
+</button>
+
 </div>
 
 </section>
 
 
 <!-- NOTEN -->
+
 <section id="grades">
 
 <div class="card">
+
 <h2>📝 Notenrechner</h2>
 
 <div class="form-grid">
 
 <div>
-<label>Fach / Bezeichnung</label>
-<input id="gradeName" placeholder="z. B. Mathe Klassenarbeit">
+
+<label>
+Fach / Bezeichnung
+</label>
+
+<input
+id="gradeName"
+placeholder="z. B. Mathe Klassenarbeit"
+>
+
 </div>
 
 <div>
-<label>Note</label>
-<input id="gradeValue" type="number" min="1" max="6" step=".1">
+
+<label>
+Note
+</label>
+
+<input
+id="gradeValue"
+type="number"
+min="1"
+max="6"
+step=".1"
+>
+
 </div>
 
 <div>
-<label>Gewichtung (%)</label>
-<input id="gradeWeight" type="number" min="1">
-</div>
+
+<label>
+Gewichtung (%)
+</label>
+
+<input
+id="gradeWeight"
+type="number"
+min="1"
+>
 
 </div>
 
-<button class="primary" onclick="addGrade()">➕ Note hinzufügen</button>
+</div>
+
+<button class="primary" onclick="addGrade()">
+➕ Note hinzufügen
+</button>
 
 <div id="gradeList"></div>
 
 <hr>
 
-<h3>Durchschnitt</h3>
-<div class="stat" id="averageBig">–</div>
+<h3>
+Durchschnitt
+</h3>
+
+<div class="stat" id="averageBig">
+–
+</div>
 
 </div>
 
@@ -532,23 +736,58 @@ footer{
 
 
 <!-- TIMER -->
+
 <section id="timer">
 
 <div class="card">
 
-<h2>⏱️ Pomodoro</h2>
+<h2>
+⏱️ Pomodoro
+</h2>
 
-<div class="timer-mode" id="timerMode">📚 LERNZEIT</div>
-
-<div class="timer" id="timerDisplay">25:00</div>
-
-<div class="timer-buttons">
-<button class="primary" onclick="startTimer()">Start</button>
-<button class="secondary" onclick="pauseTimer()">Pause</button>
-<button class="danger" onclick="resetTimer()">Reset</button>
+<div
+class="timer-mode"
+id="timerMode"
+>
+📚 LERNZEIT
 </div>
 
-<p class="small" style="text-align:center;">
+<div
+class="timer"
+id="timerDisplay"
+>
+25:00
+</div>
+
+<div class="timer-buttons">
+
+<button
+class="primary"
+onclick="startTimer()"
+>
+Start
+</button>
+
+<button
+class="secondary"
+onclick="pauseTimer()"
+>
+Pause
+</button>
+
+<button
+class="danger"
+onclick="resetTimer()"
+>
+Reset
+</button>
+
+</div>
+
+<p
+class="small"
+style="text-align:center;"
+>
 25 Minuten lernen → 5 Minuten Pause
 </p>
 
@@ -558,53 +797,125 @@ footer{
 
 
 <!-- PLANER -->
+
 <section id="planner">
 
 <div class="card">
 
-<h2>📚 Lernplaner</h2>
+<h2>
+📚 Lernplaner
+</h2>
 
 <div class="form-grid">
 
 <div>
-<label>Aufgabe</label>
-<input id="taskTitle" placeholder="z. B. Bruchrechnen üben">
+
+<label>
+Aufgabe
+</label>
+
+<input
+id="taskTitle"
+placeholder="z. B. Bruchrechnen üben"
+>
+
 </div>
 
 <div>
-<label>Fach</label>
-<input id="taskSubject" placeholder="z. B. Mathe">
+
+<label>
+Fach
+</label>
+
+<input
+id="taskSubject"
+placeholder="z. B. Mathe"
+>
+
 </div>
 
 <div>
-<label>Datum</label>
-<input id="taskDate" type="date">
+
+<label>
+Datum
+</label>
+
+<input
+id="taskDate"
+type="date"
+>
+
 </div>
 
 <div>
-<label>Minuten</label>
-<input id="taskMinutes" type="number" min="1" placeholder="30">
+
+<label>
+Minuten
+</label>
+
+<input
+id="taskMinutes"
+type="number"
+min="1"
+placeholder="30"
+>
+
 </div>
 
 <div>
-<label>Priorität</label>
+
+<label>
+Priorität
+</label>
+
 <select id="taskPriority">
-<option value="high">🔴 Hoch</option>
-<option value="medium" selected>🟡 Mittel</option>
-<option value="low">🟢 Niedrig</option>
+
+<option value="high">
+🔴 Hoch
+</option>
+
+<option
+value="medium"
+selected
+>
+🟡 Mittel
+</option>
+
+<option value="low">
+🟢 Niedrig
+</option>
+
 </select>
+
 </div>
 
 <div>
-<label>Filter nach Fach</label>
-<select id="subjectFilter" onchange="renderTasks()">
-<option value="all">Alle Fächer</option>
+
+<label>
+Filter nach Fach
+</label>
+
+<select
+id="subjectFilter"
+onchange="renderTasks()"
+>
+
+<option value="all">
+Alle Fächer
+</option>
+
 </select>
-</div>
 
 </div>
 
-<button class="primary" onclick="addTask()">➕ Aufgabe hinzufügen</button>
+</div>
+
+<button
+class="primary"
+onclick="addTask()"
+>
+➕ Aufgabe hinzufügen
+</button>
 
 <div id="taskList"></div>
 
@@ -614,78 +925,164 @@ footer{
 
 
 <!-- AUTO PLAN -->
+
 <section id="auto">
 
 <div class="card auto">
 
-<h2>🧠 Automatischer Lernplan</h2>
+<h2>
+🧠 Automatischer Lernplan
+</h2>
 
 <p class="small">
-StudyHub erstellt anhand von Prüfungstermin, Schwierigkeit und
-deiner verfügbaren Zeit einen strukturierten Lernplan.
+StudyHub erstellt anhand von Prüfungstermin,
+Schwierigkeit und deiner verfügbaren Zeit
+einen strukturierten Lernplan.
 </p>
 
 <div class="form-grid">
 
 <div>
-<label>Fach</label>
-<input id="autoSubject" placeholder="z. B. Englisch">
+
+<label>
+Fach
+</label>
+
+<input
+id="autoSubject"
+placeholder="z. B. Englisch"
+>
+
 </div>
 
 <div>
-<label>Thema</label>
-<input id="autoTopic" placeholder="z. B. Unit 5">
+
+<label>
+Thema
+</label>
+
+<input
+id="autoTopic"
+placeholder="z. B. Unit 5"
+>
+
 </div>
 
 <div>
-<label>Prüfung</label>
-<input id="autoExam" type="date">
+
+<label>
+Prüfung
+</label>
+
+<input
+id="autoExam"
+type="date"
+>
+
 </div>
 
 <div>
-<label>Minuten pro Tag</label>
-<input id="autoMinutes" type="number" min="10" value="30">
+
+<label>
+Minuten pro Tag
+</label>
+
+<input
+id="autoMinutes"
+type="number"
+min="10"
+value="30"
+>
+
 </div>
 
 <div>
-<label>Schwierigkeit</label>
+
+<label>
+Schwierigkeit
+</label>
+
 <select id="autoDifficulty">
-<option value="easy">🟢 Leicht</option>
-<option value="medium" selected>🟡 Mittel</option>
-<option value="hard">🔴 Schwer</option>
+
+<option value="easy">
+🟢 Leicht
+</option>
+
+<option
+value="medium"
+selected
+>
+🟡 Mittel
+</option>
+
+<option value="hard">
+🔴 Schwer
+</option>
+
 </select>
-</div>
 
 </div>
 
-<button class="primary" onclick="createPlan()">
+</div>
+
+<button
+class="primary"
+onclick="createPlan()"
+>
 ✨ Lernplan erstellen
 </button>
 
 </div>
 
 <div class="card">
-<h2>📅 Dein Plan</h2>
+
+<h2>
+📅 Dein Plan
+</h2>
+
 <div id="autoResult">
-<p class="empty">Noch keinen Lernplan erstellt.</p>
+
+<p class="empty">
+Noch keinen Lernplan erstellt.
+</p>
+
 </div>
+
 </div>
 
 </section>
 
 
 <!-- KALENDER -->
+
 <section id="calendar">
 
 <div class="card">
 
 <div class="calendar-header">
-<button class="secondary" onclick="monthChange(-1)">←</button>
+
+<button
+class="secondary"
+onclick="monthChange(-1)"
+>
+←
+</button>
+
 <h2 id="calendarTitle"></h2>
-<button class="secondary" onclick="monthChange(1)">→</button>
+
+<button
+class="secondary"
+onclick="monthChange(1)"
+>
+→
+</button>
+
 </div>
 
-<div class="calendar" id="calendarGrid"></div>
+<div
+class="calendar"
+id="calendarGrid"
+></div>
 
 </div>
 
@@ -693,32 +1090,75 @@ deiner verfügbaren Zeit einen strukturierten Lernplan.
 
 
 <!-- STATISTIK -->
+
 <section id="stats">
 
 <div class="card">
 
-<h2>📊 Deine Statistik</h2>
+<h2>
+📊 Deine Statistik
+</h2>
 
 <div class="grid">
 
 <div>
-<div class="small">Aufgaben</div>
-<div class="stat" id="statTotal">0</div>
+
+<div class="small">
+Aufgaben
+</div>
+
+<div
+class="stat"
+id="statTotal"
+>
+0
+</div>
+
 </div>
 
 <div>
-<div class="small">Erledigt</div>
-<div class="stat" id="statDone">0</div>
+
+<div class="small">
+Erledigt
+</div>
+
+<div
+class="stat"
+id="statDone"
+>
+0
+</div>
+
 </div>
 
 <div>
-<div class="small">Lernzeit</div>
-<div class="stat" id="statMinutes">0</div>
+
+<div class="small">
+Lernzeit
+</div>
+
+<div
+class="stat"
+id="statMinutes"
+>
+0
+</div>
+
 </div>
 
 <div>
-<div class="small">Fortschritt</div>
-<div class="stat" id="statPercent">0%</div>
+
+<div class="small">
+Fortschritt
+</div>
+
+<div
+class="stat"
+id="statPercent"
+>
+0%
+</div>
+
 </div>
 
 </div>
@@ -726,63 +1166,291 @@ deiner verfügbaren Zeit einen strukturierten Lernplan.
 </div>
 
 <div class="card">
-<h2>📈 Lernzeit der letzten 7 Tage</h2>
-<div class="chart" id="chart"></div>
+
+<h2>
+📈 Lernzeit der letzten 7 Tage
+</h2>
+
+<div
+class="chart"
+id="chart"
+></div>
+
 </div>
 
 <div class="card">
-<h2>📚 Fortschritt nach Fach</h2>
+
+<h2>
+📚 Fortschritt nach Fach
+</h2>
+
 <div id="subjectStats"></div>
+
+</div>
+
+</section>
+
+
+<!-- STUDYHUB PLUS -->
+
+<section id="plus">
+
+<div class="plus-hero">
+
+<h1>
+✨ StudyHub Plus
+</h1>
+
+<p>
+Noch mehr Möglichkeiten für deine Schule,
+Prüfungen und Lernorganisation.
+</p>
+
+<p>
+<strong>
+Einfacher lernen. Besser planen. Mehr Überblick.
+</strong>
+</p>
+
+</div>
+
+
+<div class="plus-grid">
+
+<div class="card plus-card">
+
+<div class="plus-icon">
+🎓
+</div>
+
+<span class="coming-soon">
+BALD VERFÜGBAR
+</span>
+
+<h2>
+Exam Planner 2026/27
+</h2>
+
+<p class="small">
+Plane deine Prüfungen, Lernphasen und
+Wiederholungen übersichtlich an einem Ort.
+</p>
+
+<ul>
+<li>Prüfungsübersicht</li>
+<li>Lernphasen</li>
+<li>Wiederholungstage</li>
+<li>Countdowns</li>
+</ul>
+
+</div>
+
+
+<div class="card plus-card">
+
+<div class="plus-icon">
+📄
+</div>
+
+<span class="coming-soon">
+BALD VERFÜGBAR
+</span>
+
+<h2>
+Study Templates
+</h2>
+
+<p class="small">
+Fertige Vorlagen für Schule, Lernen,
+Prüfungsvorbereitung und Organisation.
+</p>
+
+<ul>
+<li>Lernzettel</li>
+<li>Wochenplan</li>
+<li>Prüfungsplan</li>
+<li>To-do-Listen</li>
+</ul>
+
+</div>
+
+
+<div class="card plus-card">
+
+<div class="plus-icon">
+📊
+</div>
+
+<span class="coming-soon">
+BALD VERFÜGBAR
+</span>
+
+<h2>
+Advanced Stats
+</h2>
+
+<p class="small">
+Noch mehr Übersicht über deinen Lernfortschritt
+und deine Lerngewohnheiten.
+</p>
+
+<ul>
+<li>Detaillierte Statistiken</li>
+<li>Fächervergleich</li>
+<li>Lernzeit-Auswertung</li>
+<li>Fortschrittsübersicht</li>
+</ul>
+
+</div>
+
+
+<div class="card plus-card">
+
+<div class="plus-icon">
+🎁
+</div>
+
+<span class="coming-soon">
+BALD VERFÜGBAR
+</span>
+
+<h2>
+Smart Study Bundle
+</h2>
+
+<p class="small">
+Das komplette StudyHub-Paket für eine
+strukturierte Schulorganisation.
+</p>
+
+<ul>
+<li>Exam Planner</li>
+<li>Study Templates</li>
+<li>Advanced Stats</li>
+<li>Bonus-Material</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="card promo">
+
+<h2>
+🎓 StudyHub Exam Planner 2026/27
+</h2>
+
+<p>
+Dein nächstes StudyHub-Plus-Produkt kommt bald.
+Ein kompletter digitaler Prüfungs- und Lernplaner
+für das Schuljahr 2026/27.
+</p>
+
+<p>
+<strong>
+✨ Einmal erstellen → das ganze Schuljahr besser planen.
+</strong>
+</p>
+
+<button
+class="primary"
+onclick="plusComingSoon()"
+>
+✨ Bald verfügbar
+</button>
+
 </div>
 
 </section>
 
 
 <!-- SETTINGS -->
+
 <section id="settings">
 
 <div class="card">
 
-<h2>⚙️ Einstellungen</h2>
+<h2>
+⚙️ Einstellungen
+</h2>
 
-<label>Dein Name</label>
-<input id="userName" placeholder="z. B. Aurelia">
+<label>
+Dein Name
+</label>
 
-<label>Tägliches Lernziel (Minuten)</label>
-<input id="userGoal" type="number" min="5" value="30">
+<input
+id="userName"
+placeholder="z. B. Aurelia"
+>
 
-<button class="primary" onclick="saveSettings()">
+<label>
+Tägliches Lernziel (Minuten)
+</label>
+
+<input
+id="userGoal"
+type="number"
+min="5"
+value="30"
+>
+
+<button
+class="primary"
+onclick="saveSettings()"
+>
 💾 Speichern
 </button>
 
 </div>
 
+
 <div class="card">
 
-<h2>🌙 Erscheinungsbild</h2>
+<h2>
+🌙 Erscheinungsbild
+</h2>
 
-<button class="secondary" onclick="toggleDark()">
+<button
+class="secondary"
+onclick="toggleDark()"
+>
 🌙 Dark Mode an/aus
 </button>
 
 </div>
 
+
 <div class="card">
 
-<h2>💾 Deine Daten</h2>
+<h2>
+💾 Deine Daten
+</h2>
 
 <p class="small">
-Deine StudyHub-Daten werden in diesem Browser gespeichert.
-Du kannst sie als Datei sichern und später wieder importieren.
+Deine StudyHub-Daten werden in diesem Browser
+gespeichert. Du kannst sie als Datei sichern
+und später wieder importieren.
 </p>
 
-<button class="secondary" onclick="exportData()">
+<button
+class="secondary"
+onclick="exportData()"
+>
 📤 Daten exportieren
 </button>
 
-<input type="file" id="importFile" accept=".json" onchange="importData(event)">
+<input
+type="file"
+id="importFile"
+accept=".json"
+onchange="importData(event)"
+>
 
-<button class="danger" onclick="deleteAllData()">
+<button
+class="danger"
+onclick="deleteAllData()"
+>
 🗑️ Alle Daten löschen
 </button>
 
@@ -792,8 +1460,9 @@ Du kannst sie als Datei sichern und später wieder importieren.
 
 </main>
 
+
 <footer>
-📚 StudyHub · Dein smarter Lernbereich
+📚 StudyHub · Dein smarter Lernbereich · ✨ StudyHub Plus
 </footer>
 
 
@@ -841,13 +1510,40 @@ let timerInterval;
 
 function save(){
 
-localStorage.setItem("sh_grades",JSON.stringify(grades));
-localStorage.setItem("sh_tasks",JSON.stringify(tasks));
-localStorage.setItem("sh_settings",JSON.stringify(settings));
-localStorage.setItem("sh_minutes",totalMinutes);
-localStorage.setItem("sh_daily",JSON.stringify(dailyMinutes));
-localStorage.setItem("sh_streak",streak);
-localStorage.setItem("sh_last",lastActivity);
+localStorage.setItem(
+"sh_grades",
+JSON.stringify(grades)
+);
+
+localStorage.setItem(
+"sh_tasks",
+JSON.stringify(tasks)
+);
+
+localStorage.setItem(
+"sh_settings",
+JSON.stringify(settings)
+);
+
+localStorage.setItem(
+"sh_minutes",
+totalMinutes
+);
+
+localStorage.setItem(
+"sh_daily",
+JSON.stringify(dailyMinutes)
+);
+
+localStorage.setItem(
+"sh_streak",
+streak
+);
+
+localStorage.setItem(
+"sh_last",
+lastActivity
+);
 
 }
 
@@ -864,14 +1560,32 @@ document.querySelectorAll("section")
 document.getElementById(id)
 .classList.add("active");
 
-if(id==="calendar") renderCalendar();
+if(id==="calendar"){
+renderCalendar();
+}
 
-if(id==="stats") renderStats();
+if(id==="stats"){
+renderStats();
+}
 
 window.scrollTo({
 top:0,
 behavior:"smooth"
 });
+
+}
+
+
+/* =========================
+   STUDYHUB PLUS
+========================= */
+
+function plusComingSoon(){
+
+alert(
+"✨ StudyHub Plus kommt bald! " +
+"Wir bauen zuerst den Exam Planner 2026/27."
+);
 
 }
 
@@ -933,17 +1647,26 @@ streak=1;
 
 }else{
 
-let old=new Date(lastActivity+"T00:00:00");
-let current=new Date(t+"T00:00:00");
+let old=new Date(
+lastActivity+"T00:00:00"
+);
+
+let current=new Date(
+t+"T00:00:00"
+);
 
 let diff=Math.round(
 (current-old)/(1000*60*60*24)
 );
 
 if(diff===1){
+
 streak++;
+
 }else if(diff>1){
+
 streak=1;
+
 }
 
 }
@@ -979,9 +1702,11 @@ document.getElementById("greeting")
 ?`Hallo ${settings.name}! 👋`
 :"Dein smarter Lernbereich";
 
-document.getElementById("streak").textContent=streak;
+document.getElementById("streak")
+.textContent=streak;
 
-document.getElementById("completed").textContent=
+document.getElementById("completed")
+.textContent=
 tasks.filter(t=>t.done).length;
 
 document.getElementById("minutesTotal")
@@ -994,7 +1719,8 @@ document.getElementById("average")
 ?"–"
 :avg.toFixed(2);
 
-let todayMin=dailyMinutes[today()]||0;
+let todayMin=
+dailyMinutes[today()]||0;
 
 document.getElementById("todayMinutes")
 .textContent=todayMin;
@@ -1004,7 +1730,9 @@ document.getElementById("goal")
 
 let percent=Math.min(
 100,
-Math.round((todayMin/settings.goal)*100)
+Math.round(
+(todayMin/settings.goal)*100
+)
 );
 
 document.getElementById("goalBar")
@@ -1025,11 +1753,13 @@ let name=document
 .getElementById("gradeName")
 .value.trim();
 
-let value=Number(document
-.getElementById("gradeValue").value);
+let value=Number(
+document.getElementById("gradeValue").value
+);
 
-let weight=Number(document
-.getElementById("gradeWeight").value);
+let weight=Number(
+document.getElementById("gradeWeight").value
+);
 
 if(!name||!value||!weight){
 
@@ -1078,6 +1808,7 @@ let weight=0;
 grades.forEach(g=>{
 
 total+=Number(g.value)*Number(g.weight);
+
 weight+=Number(g.weight);
 
 });
@@ -1117,15 +1848,22 @@ box.innerHTML=grades.map(g=>`
 <div class="item-row">
 
 <div>
-<strong>${safe(g.name)}</strong>
+
+<strong>
+${safe(g.name)}
+</strong>
 
 <div class="small">
-Note ${g.value} · Gewichtung ${g.weight}%
-</div>
+Note ${g.value} ·
+Gewichtung ${g.weight}%
 </div>
 
-<button class="danger"
-onclick="deleteGrade(${g.id})">
+</div>
+
+<button
+class="danger"
+onclick="deleteGrade(${g.id})"
+>
 🗑️
 </button>
 
@@ -1140,7 +1878,10 @@ onclick="deleteGrade(${g.id})">
 let avg=average();
 
 document.getElementById("averageBig")
-.textContent=avg===null?"–":avg.toFixed(2);
+.textContent=
+avg===null
+?"–"
+:avg.toFixed(2);
 
 }
 
@@ -1152,23 +1893,31 @@ document.getElementById("averageBig")
 function addTask(){
 
 let title=document
-.getElementById("taskTitle").value.trim();
+.getElementById("taskTitle")
+.value.trim();
 
 let subject=document
-.getElementById("taskSubject").value.trim();
+.getElementById("taskSubject")
+.value.trim();
 
 let date=document
-.getElementById("taskDate").value;
+.getElementById("taskDate")
+.value;
 
-let minutes=Number(document
-.getElementById("taskMinutes").value);
+let minutes=Number(
+document.getElementById("taskMinutes")
+.value
+);
 
 let priority=document
-.getElementById("taskPriority").value;
+.getElementById("taskPriority")
+.value;
 
 if(!title||!date||!minutes){
 
-alert("Bitte Aufgabe, Datum und Minuten ausfüllen.");
+alert(
+"Bitte Aufgabe, Datum und Minuten ausfüllen."
+);
 
 return;
 
@@ -1210,7 +1959,9 @@ if(!task)return;
 
 task.done=!task.done;
 
-if(task.done) activity();
+if(task.done){
+activity();
+}
 
 save();
 
@@ -1239,6 +1990,7 @@ renderCalendar();
 function priorityText(p){
 
 if(p==="high")return"🔴 Hoch";
+
 if(p==="medium")return"🟡 Mittel";
 
 return"🟢 Niedrig";
@@ -1250,7 +2002,8 @@ function renderTasks(){
 
 let list=document.getElementById("taskList");
 
-let filter=document.getElementById("subjectFilter").value;
+let filter=
+document.getElementById("subjectFilter").value;
 
 let shown=tasks.filter(t=>
 filter==="all"||t.subject===filter
@@ -1264,8 +2017,12 @@ medium:2,
 low:3
 };
 
-if(p[a.priority]!==p[b.priority]){
+if(
+p[a.priority]!==p[b.priority]
+){
+
 return p[a.priority]-p[b.priority];
+
 }
 
 return a.date.localeCompare(b.date);
@@ -1283,13 +2040,17 @@ return;
 
 list.innerHTML=shown.map(t=>`
 
-<div class="list-item ${t.done?"done":""}">
+<div
+class="list-item ${t.done?"done":""}"
+>
 
 <div class="item-row">
 
 <div>
 
-<strong>${safe(t.title)}</strong>
+<strong>
+${safe(t.title)}
+</strong>
 
 <div class="small">
 ${safe(t.subject)}
@@ -1305,13 +2066,17 @@ ${priorityText(t.priority)}
 
 <div>
 
-<button class="secondary"
-onclick="toggleTask(${t.id})">
+<button
+class="secondary"
+onclick="toggleTask(${t.id})"
+>
 ${t.done?"↩️":"✅"}
 </button>
 
-<button class="danger"
-onclick="deleteTask(${t.id})">
+<button
+class="danger"
+onclick="deleteTask(${t.id})"
+>
 🗑️
 </button>
 
@@ -1328,9 +2093,12 @@ onclick="deleteTask(${t.id})">
 
 function renderToday(){
 
-let box=document.getElementById("todayTasks");
+let box=
+document.getElementById("todayTasks");
 
-let list=tasks.filter(t=>t.date===today());
+let list=tasks.filter(
+t=>t.date===today()
+);
 
 if(!list.length){
 
@@ -1343,20 +2111,29 @@ return;
 
 box.innerHTML=list.map(t=>`
 
-<div class="list-item ${t.done?"done":""}">
+<div
+class="list-item ${t.done?"done":""}"
+>
 
 <div class="item-row">
 
 <div>
-<strong>${safe(t.title)}</strong>
+
+<strong>
+${safe(t.title)}
+</strong>
 
 <div class="small">
-${safe(t.subject)} · ${t.minutes} Min.
-</div>
+${safe(t.subject)}
+· ${t.minutes} Min.
 </div>
 
-<button class="secondary"
-onclick="toggleTask(${t.id})">
+</div>
+
+<button
+class="secondary"
+onclick="toggleTask(${t.id})"
+>
 ${t.done?"↩️":"✅"}
 </button>
 
@@ -1375,7 +2152,8 @@ ${t.done?"↩️":"✅"}
 
 function updateSubjects(){
 
-let select=document.getElementById("subjectFilter");
+let select=
+document.getElementById("subjectFilter");
 
 let current=select.value;
 
@@ -1405,6 +2183,7 @@ select.value=current;
 function displayTimer(){
 
 let min=Math.floor(timerSeconds/60);
+
 let sec=timerSeconds%60;
 
 document.getElementById("timerDisplay")
@@ -1431,15 +2210,19 @@ displayTimer();
 if(timerSeconds<=0){
 
 clearInterval(timerInterval);
+
 timerRunning=false;
 
 if(!timerBreak){
 
 addLearningMinutes(25);
 
-alert("🎉 25 Minuten geschafft! Zeit für eine Pause.");
+alert(
+"🎉 25 Minuten geschafft! Zeit für eine Pause."
+);
 
 timerBreak=true;
+
 timerSeconds=5*60;
 
 document.getElementById("timerMode")
@@ -1450,6 +2233,7 @@ document.getElementById("timerMode")
 alert("💪 Pause vorbei!");
 
 timerBreak=false;
+
 timerSeconds=25*60;
 
 document.getElementById("timerMode")
@@ -1469,6 +2253,7 @@ displayTimer();
 function pauseTimer(){
 
 clearInterval(timerInterval);
+
 timerRunning=false;
 
 }
@@ -1479,7 +2264,9 @@ function resetTimer(){
 clearInterval(timerInterval);
 
 timerRunning=false;
+
 timerBreak=false;
+
 timerSeconds=25*60;
 
 document.getElementById("timerMode")
@@ -1527,8 +2314,10 @@ let exam=document
 .getElementById("autoExam")
 .value;
 
-let minutes=Number(document
-.getElementById("autoMinutes").value);
+let minutes=Number(
+document.getElementById("autoMinutes")
+.value
+);
 
 let difficulty=document
 .getElementById("autoDifficulty")
@@ -1543,9 +2332,12 @@ return;
 }
 
 let start=new Date();
+
 start.setHours(0,0,0,0);
 
-let end=new Date(exam+"T00:00:00");
+let end=new Date(
+exam+"T00:00:00"
+);
 
 let days=Math.ceil(
 (end-start)/(1000*60*60*24)
@@ -1553,7 +2345,9 @@ let days=Math.ceil(
 
 if(days<1){
 
-alert("Die Prüfung muss in der Zukunft liegen.");
+alert(
+"Die Prüfung muss in der Zukunft liegen."
+);
 
 return;
 
@@ -1561,10 +2355,17 @@ return;
 
 let factor=1;
 
-if(difficulty==="medium")factor=1.2;
-if(difficulty==="hard")factor=1.5;
+if(difficulty==="medium"){
+factor=1.2;
+}
 
-let planned=Math.round(minutes*factor);
+if(difficulty==="hard"){
+factor=1.5;
+}
+
+let planned=Math.round(
+minutes*factor
+);
 
 let phases=[
 "📖 Grundlagen lernen",
@@ -1579,11 +2380,16 @@ let html="";
 for(let i=0;i<days;i++){
 
 let d=new Date(start);
-d.setDate(start.getDate()+i);
+
+d.setDate(
+start.getDate()+i
+);
 
 let phaseIndex=Math.min(
 phases.length-1,
-Math.floor(i/days*phases.length)
+Math.floor(
+i/days*phases.length
+)
 );
 
 html+=`
@@ -1603,7 +2409,8 @@ ${phases[phaseIndex]}
 </div>
 
 <div class="small">
-${safe(subject)} · ${safe(topic)}
+${safe(subject)}
+· ${safe(topic)}
 · ca. ${planned} Minuten
 </div>
 
@@ -1617,17 +2424,22 @@ html+=`
 
 <div class="plan-day">
 
-<strong>🎓 Prüfungstag</strong>
+<strong>
+🎓 Prüfungstag
+</strong>
 
 <div class="small">
-${formatDate(exam)} · Nur kurze Wiederholung.
+${formatDate(exam)}
+· Nur kurze Wiederholung.
 Keine neuen großen Themen mehr.
 </div>
 
 </div>
 
-<button class="primary"
-onclick="addGeneratedPlan()">
+<button
+class="primary"
+onclick="addGeneratedPlan()"
+>
 ➕ In meinen Lernplan übernehmen
 </button>
 
@@ -1654,13 +2466,16 @@ if(!window.generatedPlan)return;
 let p=window.generatedPlan;
 
 let start=new Date();
+
 start.setHours(0,0,0,0);
 
 for(let i=0;i<p.days;i++){
 
 let d=new Date(start);
 
-d.setDate(start.getDate()+i);
+d.setDate(
+start.getDate()+i
+);
 
 tasks.push({
 
@@ -1677,7 +2492,10 @@ String(d.getDate()).padStart(2,"0"),
 
 minutes:p.minutes,
 
-priority:i>p.days*.7?"high":"medium",
+priority:
+i>p.days*.7
+?"high"
+:"medium",
 
 done:false
 
@@ -1692,7 +2510,9 @@ renderTasks();
 renderCalendar();
 updateHome();
 
-alert("🎉 Dein Lernplan wurde übernommen!");
+alert(
+"🎉 Dein Lernplan wurde übernommen!"
+);
 
 }
 
@@ -1715,10 +2535,12 @@ renderCalendar();
 function renderCalendar(){
 
 let year=calendarDate.getFullYear();
+
 let month=calendarDate.getMonth();
 
 document.getElementById("calendarTitle")
-.textContent=new Date(year,month,1)
+.textContent=
+new Date(year,month,1)
 .toLocaleDateString(
 "de-DE",
 {
@@ -1727,7 +2549,8 @@ year:"numeric"
 }
 );
 
-let grid=document.getElementById("calendarGrid");
+let grid=
+document.getElementById("calendarGrid");
 
 let names=[
 "Mo","Di","Mi","Do","Fr","Sa","So"
@@ -1737,21 +2560,32 @@ let html=names.map(n=>
 `<div class="day-name">${n}</div>`
 ).join("");
 
-let first=new Date(year,month,1).getDay();
+let first=
+new Date(year,month,1).getDay();
 
-let offset=first===0?6:first-1;
+let offset=
+first===0
+?6
+:first-1;
 
 for(let i=0;i<offset;i++){
+
 html+='<div class="day"></div>';
+
 }
 
-let days=new Date(
+let days=
+new Date(
 year,
 month+1,
 0
 ).getDate();
 
-for(let day=1;day<=days;day++){
+for(
+let day=1;
+day<=days;
+day++
+){
 
 let date=
 year+"-"+
@@ -1759,20 +2593,30 @@ String(month+1).padStart(2,"0")+"-"+
 String(day).padStart(2,"0");
 
 let dayTasks=
-tasks.filter(t=>t.date===date);
+tasks.filter(
+t=>t.date===date
+);
 
 html+=`
 
-<div class="day ${date===today()?"today":""}">
+<div
+class="day ${date===today()?"today":""}"
+>
 
-<strong>${day}</strong>
+<strong>
+${day}
+</strong>
 
 ${dayTasks.slice(0,3).map(t=>
-`<span class="dot">${safe(t.title)}</span>`
+`<span class="dot">
+${safe(t.title)}
+</span>`
 ).join("")}
 
 ${dayTasks.length>3
-?`<span class="small">+${dayTasks.length-3}</span>`
+?`<span class="small">
++${dayTasks.length-3}
+</span>`
 :""}
 
 </div>
@@ -1794,9 +2638,11 @@ function renderStats(){
 
 let total=tasks.length;
 
-let done=tasks.filter(t=>t.done).length;
+let done=
+tasks.filter(t=>t.done).length;
 
-let percent=total
+let percent=
+total
 ?Math.round(done/total*100)
 :0;
 
@@ -1820,7 +2666,8 @@ renderSubjectStats();
 
 function renderChart(){
 
-let box=document.getElementById("chart");
+let box=
+document.getElementById("chart");
 
 let days=[];
 
@@ -1828,7 +2675,9 @@ for(let i=6;i>=0;i--){
 
 let d=new Date();
 
-d.setDate(d.getDate()-i);
+d.setDate(
+d.getDate()-i
+);
 
 let key=
 d.getFullYear()+"-"+
@@ -1836,12 +2685,20 @@ String(d.getMonth()+1).padStart(2,"0")+"-"+
 String(d.getDate()).padStart(2,"0");
 
 days.push({
+
 key,
-label:d.toLocaleDateString(
+
+label:
+d.toLocaleDateString(
 "de-DE",
-{weekday:"short"}
+{
+weekday:"short"
+}
 ),
-value:dailyMinutes[key]||0
+
+value:
+dailyMinutes[key]||0
+
 });
 
 }
@@ -1853,20 +2710,25 @@ let max=Math.max(
 
 box.innerHTML=days.map(d=>{
 
-let height=
-Math.max(
+let height=Math.max(
 3,
-Math.round(d.value/max*160)
+Math.round(
+d.value/max*160
+)
 );
 
 return `
 
 <div class="bar-wrap">
 
-<div class="small">${d.value}</div>
+<div class="small">
+${d.value}
+</div>
 
-<div class="bar"
-style="height:${height}px"></div>
+<div
+class="bar"
+style="height:${height}px"
+></div>
 
 <div class="bar-label">
 ${d.label}
@@ -1883,7 +2745,8 @@ ${d.label}
 
 function renderSubjectStats(){
 
-let box=document.getElementById("subjectStats");
+let box=
+document.getElementById("subjectStats");
 
 let subjects={};
 
@@ -1902,7 +2765,9 @@ minutes:0
 }
 
 subjects[s].total++;
-subjects[s].minutes+=Number(t.minutes)||0;
+
+subjects[s].minutes+=
+Number(t.minutes)||0;
 
 if(t.done){
 subjects[s].done++;
@@ -1910,7 +2775,8 @@ subjects[s].done++;
 
 });
 
-let names=Object.keys(subjects);
+let names=
+Object.keys(subjects);
 
 if(!names.length){
 
@@ -1925,13 +2791,18 @@ box.innerHTML=names.map(s=>{
 
 let x=subjects[s];
 
-let p=Math.round(x.done/x.total*100);
+let p=
+Math.round(
+x.done/x.total*100
+);
 
 return`
 
 <div class="subject-box">
 
-<strong>📚 ${safe(s)}</strong>
+<strong>
+📚 ${safe(s)}
+</strong>
 
 <div class="small">
 ${x.done}/${x.total} Aufgaben ·
@@ -1939,7 +2810,11 @@ ${x.minutes} geplante Minuten
 </div>
 
 <div class="progress">
-<div style="width:${p}%"></div>
+
+<div
+style="width:${p}%"
+></div>
+
 </div>
 
 </div>
@@ -1961,13 +2836,16 @@ let name=document
 .getElementById("userName")
 .value.trim();
 
-let goal=Number(document
-.getElementById("userGoal")
-.value);
+let goal=Number(
+document.getElementById("userGoal")
+.value
+);
 
 if(!goal||goal<5){
 
-alert("Bitte mindestens 5 Minuten eingeben.");
+alert(
+"Bitte mindestens 5 Minuten eingeben."
+);
 
 return;
 
@@ -1982,7 +2860,9 @@ save();
 
 updateHome();
 
-alert("✅ Einstellungen gespeichert!");
+alert(
+"✅ Einstellungen gespeichert!"
+);
 
 }
 
@@ -2001,7 +2881,9 @@ document.body.classList.contains("dark")
 
 function loadDark(){
 
-if(localStorage.getItem("sh_dark")==="true"){
+if(
+localStorage.getItem("sh_dark")==="true"
+){
 
 document.body.classList.add("dark");
 
@@ -2029,17 +2911,28 @@ lastActivity
 };
 
 let blob=new Blob(
-[JSON.stringify(data,null,2)],
-{type:"application/json"}
+[
+JSON.stringify(
+data,
+null,
+2
+)
+],
+{
+type:"application/json"
+}
 );
 
-let url=URL.createObjectURL(blob);
+let url=
+URL.createObjectURL(blob);
 
-let a=document.createElement("a");
+let a=
+document.createElement("a");
 
 a.href=url;
 
-a.download="studyhub-backup.json";
+a.download=
+"studyhub-backup.json";
 
 a.click();
 
@@ -2054,21 +2947,31 @@ URL.revokeObjectURL(url);
 
 function importData(event){
 
-let file=event.target.files[0];
+let file=
+event.target.files[0];
 
 if(!file)return;
 
-let reader=new FileReader();
+let reader=
+new FileReader();
 
 reader.onload=function(e){
 
 try{
 
-let data=JSON.parse(e.target.result);
+let data=
+JSON.parse(
+e.target.result
+);
 
-grades=data.grades||[];
-tasks=data.tasks||[];
-settings=data.settings||{
+grades=
+data.grades||[];
+
+tasks=
+data.tasks||[];
+
+settings=
+data.settings||{
 name:"",
 goal:30
 };
@@ -2089,11 +2992,15 @@ save();
 
 initialize();
 
-alert("✅ Backup erfolgreich importiert!");
+alert(
+"✅ Backup erfolgreich importiert!"
+);
 
 }catch{
 
-alert("❌ Diese Datei ist kein gültiges StudyHub-Backup.");
+alert(
+"❌ Diese Datei ist kein gültiges StudyHub-Backup."
+);
 
 }
 
@@ -2139,7 +3046,9 @@ lastActivity="";
 
 initialize();
 
-alert("Alle Daten wurden gelöscht.");
+alert(
+"Alle Daten wurden gelöscht."
+);
 
 }
 
@@ -2157,16 +3066,23 @@ document.getElementById("userGoal")
 .value=settings.goal||30;
 
 renderGrades();
+
 updateSubjects();
+
 renderTasks();
+
 renderCalendar();
+
 renderStats();
+
 displayTimer();
+
 updateHome();
 
 }
 
 loadDark();
+
 initialize();
 
 </script>
